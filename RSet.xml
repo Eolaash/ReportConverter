@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="Windows-1251" standalone="yes"?>
+<!--Сборник шаблонов отчетов АТС и методология их чтения-->
+<message class="RSET" version="1" releasestamp="20210304000000">
+	<reportlist>
+		<report name="ADVANCE_KOM_GTP">
+			<version id="1" releasedate="20130101" targetperiod="M" tradezones="1" enabled="1">
+				<files>
+					<file id="1" readingplan="1">
+						<info>Ежемесячный отчет об объемах мощности, используемых для начисления авансовых обязательств по договорам купли-продажи мощности по результатам конкурентного отбора</info>
+						<filename>
+							<example>20180101_BELKAMKO_ZONE1_TG_power_consumer_avans.xls</example>
+							<namesyntax>ГГГГММДД_КодТОРГОВЦА_ЦЕНОВАЯЗОНА_TG_power_consumer_avans.xls, где: ГГГГ - год, ММ - месяц, ДД - день, КодТОРГОВЦА - например BELKAMKO, ЦЕНОВАЯЗОНА - например ZONE1</namesyntax>
+							<mask>^20\d\d[0-1]\d01_#TRADERCODE#_ZONE[1-2]_TG_power_consumer_avans$</mask>
+							<nameresolve splitter="_" period="0:DATESTAMP" trader="1:CODE" zone="2:TEXT"/>
+						</filename>
+					</file>
+				</files>
+				<readingplanes>
+					<readingplan id="1" readmethod="EXCEL">
+						<sheet id="1" name="">
+							<validatefields>					
+								<validatefield row="1" col="1" static="1" casesense="0" comparemethod="consists">для начисления авансовых обязательств</validatefield>
+								<validatefield row="4" col="1" static="1" casesense="0" comparemethod="consists">участник</validatefield>
+								<validatefield row="5" col="1" static="1" casesense="0" comparemethod="consists">период</validatefield>
+								<validatefield row="5" col="3" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_N_2##.##CMD$PERIODDATE_YEAR_N_4##</validatefield>
+								<validatefield row="7" col="1" static="1" casesense="0" comparemethod="consists">код</validatefield>							
+								<validatefield row="8" col="2" static="1" casesense="0" comparemethod="consists">максимум</validatefield>
+								<validatefield row="8" col="3" static="1" casesense="0" comparemethod="consists">для расчета авансовых обязательств</validatefield>							
+								<validatefield row="9" col="1" static="1" casesense="0" comparemethod="consists">1</validatefield>
+								<validatefield row="9" col="2" static="1" casesense="0" comparemethod="consists">2</validatefield>
+								<validatefield row="9" col="3" static="1" casesense="0" comparemethod="consists">3</validatefield>					
+							</validatefields>
+							<reading method="SIMPLE" submethod="ROWS" direction="UP" datastart="10" emptyitemlimit="0">						
+								<datafield id="gtp_code" datatype="GTP_CODE" row="0" col="1"/>
+								<datafield id="self_powermax" datatype="POWER_M" row="0" col="2"/>
+								<datafield id="advance_calc_power" datatype="POWER_M" row="0" col="3"/>
+							</reading>
+							<fielddescriptions>
+								<fielddescription id="gtp_code">Код ГТП</fielddescription>
+								<fielddescription id="self_powermax">Собственный максимум потребления для расчета авансовых обязательств</fielddescription>
+								<fielddescription id="advance_calc_power">Объем мощности, используемый для расчета авансовых обязательств по договорам купли-продажи мощности по результатам КОМ</fielddescription>
+							</fielddescriptions>
+						</sheet>
+					</readingplan>
+				</readingplanes>
+			</version>
+		</report>
+		<report name="ADVANCE_KOM_CONTRACT">
+			<version id="1" releasedate="20130101" targetperiod="M" tradezones="1" enabled="1">
+				<files>
+					<file id="1" readingplan="1">
+						<info>Реестр авансовых обязательств по договору купли-продажи мощности по результатам конкурентного отбора мощности и по договору купли-продажи мощности по результатам конкурентного отбора мощности новых генерирующих объектов (покупка) [Аванс 1]</info>
+						<filename>
+							<example>BELKAMKO_ZONE1_FRSRMN_AVANS1_BUY_20190101_20190124.xls</example>
+							<namesyntax>КодТОРГОВЦА_ЦЕНОВАЯЗОНА_FRSRMN_AVANS1_BUY_ГГГГММДД1_ГГГГММДД2.xls, где: ГГГГ - год, ММ - месяц, ДД - день, ГГГГММДД1 - период отчета, ГГГГММДД2 - дата формирования отчета, КодТОРГОВЦА - например BELKAMKO, ЦЕНОВАЯЗОНА - например ZONE1</namesyntax>
+							<mask>^#TRADERCODE#_ZONE[1-2]_FRSRMN_AVANS1_BUY_20\d\d[0-1]\d01_20\d\d[0-1]\d[0-3]\d$</mask>						
+							<nameresolve splitter="_" period="5:DATESTAMP" trader="0:CODE" zone="1:TEXT"/>
+						</filename>
+					</file>
+					<file id="2" readingplan="1">
+						<info>Реестр авансовых обязательств по договору купли-продажи мощности по результатам конкурентного отбора мощности и по договору купли-продажи мощности по результатам конкурентного отбора мощности новых генерирующих объектов (покупка) [Аванс 2]</info>
+						<filename>
+							<example>BELKAMKO_ZONE1_FRSRMN_AVANS2_BUY_20190101_20190124.xls</example>
+							<namesyntax>КодТОРГОВЦА_ЦЕНОВАЯЗОНА_FRSRMN_AVANS2_BUY_ГГГГММДД1_ГГГГММДД2.xls, где: ГГГГ - год, ММ - месяц, ДД - день, ГГГГММДД1 - период отчета, ГГГГММДД2 - дата формирования отчета, КодТОРГОВЦА - например BELKAMKO, ЦЕНОВАЯЗОНА - например ZONE1</namesyntax>
+							<mask>^#TRADERCODE#_ZONE[1-2]_FRSRMN_AVANS2_BUY_20\d\d[0-1]\d01_20\d\d[0-1]\d[0-3]\d$</mask>						
+							<nameresolve splitter="_" period="5:DATESTAMP" trader="0:CODE" zone="1:TEXT"/>
+						</filename>
+					</file>
+				</files>
+				<readingplanes>
+					<readingplan id="1" readmethod="EXCEL">
+						<sheet id="1" name="">
+							<validatefields>						
+								<validatefield row="3" col="2" static="1" casesense="0" comparemethod="consists">получатель:</validatefield>							
+								<validatefield row="3" col="7" static="1" casesense="0" comparemethod="consists">отправитель:</validatefield>
+								<validatefield row="5" col="1" static="1" casesense="0" comparemethod="consists">реестр авансовых обязательств по договору купли-продажи</validatefield>
+								<validatefield row="6" col="1" static="1" casesense="0" comparemethod="consists">(покупка)</validatefield>
+								<validatefield row="8" col="4" static="1" casesense="0" comparemethod="consists">за расчетный период</validatefield>
+								<validatefield row="8" col="6" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_CYR_N## ##CMD$PERIODDATE_YEAR_N_4##</validatefield>
+								<validatefield row="9" col="4" static="1" casesense="0" comparemethod="consists">ценовая зона</validatefield>
+								<validatefield row="9" col="6" static="0" casesense="0" comparemethod="consists">##CMD$ZONE_N##</validatefield>							
+								<validatefield row="11" col="4" static="1" casesense="0" comparemethod="consists">номер договора</validatefield>
+								<validatefield row="11" col="6" static="1" casesense="0" comparemethod="consists">дата платежа</validatefield>
+								<validatefield row="11" col="7" static="1" casesense="0" comparemethod="consists">без ндс</validatefield>
+								<validatefield row="11" col="8" static="1" casesense="0" comparemethod="consists">ндс</validatefield>
+								<validatefield row="11" col="9" static="1" casesense="0" comparemethod="consists">авансовое обязательство</validatefield>							
+								<validatefield row="12" col="1" static="1" casesense="0" comparemethod="equal_trimmed">1</validatefield>
+								<validatefield row="12" col="4" static="1" casesense="0" comparemethod="equal_trimmed">4</validatefield>
+								<validatefield row="12" col="9" static="1" casesense="0" comparemethod="equal_trimmed">9</validatefield>
+								<validatefield row="12" col="10" static="1" casesense="0" comparemethod="empty"/>						
+							</validatefields>
+							<reading method="SIMPLE" submethod="ROWS" direction="UP" datastart="13" emptyitemlimit="0">						
+								<datafield id="trader_name_adjacent" datatype="TRADER_NAME" row="0" col="2"/>
+								<datafield id="trader_code_adjacent" datatype="TRADER_CODE" row="0" col="3"/>
+								<datafield id="ats_contract_code" datatype="ATS_CONTRACT_CODE" row="0" col="4"/>
+								<datafield id="ats_contract_date" datatype="DATESTAMP" row="0" col="5"/>
+								<datafield id="ats_contract_payment_date" datatype="DATESTAMP" row="0" col="6"/>
+								<datafield id="advance_payment" datatype="MONEY_RUB" row="0" col="7"/>
+								<datafield id="advance_nds_payment" datatype="MONEY_RUB" row="0" col="8"/>
+								<datafield id="advance_full_payment" datatype="MONEY_RUB" row="0" col="9"/>						
+							</reading>
+							<fielddescriptions>
+								<fielddescription id="trader_name_adjacent">Наименование участника</fielddescription>
+								<fielddescription id="trader_code_adjacent">Идентификационный код</fielddescription>
+								<fielddescription id="ats_contract_code">Номер договора купли-продажи мощности</fielddescription>
+								<fielddescription id="ats_contract_date">Дата договора</fielddescription>
+								<fielddescription id="ats_contract_payment_date">Дата платежа</fielddescription>
+								<fielddescription id="advance_payment">Авансовое обязательство/требование по договору купли-продажи  мощности (без НДС), руб.</fielddescription>
+								<fielddescription id="advance_nds_payment">НДС, руб.</fielddescription>
+								<fielddescription id="advance_full_payment">Авансовое обязательство/требование по договору купли-продажи  мощности, руб.</fielddescription>						
+							</fielddescriptions>
+						</sheet>
+					</readingplan>
+				</readingplanes>
+			</version>
+		</report>
+		<report name="ADVANCE_DPMGA">
+			<version id="1" releasedate="20130101" targetperiod="M" tradezones="0" enabled="1">
+				<files>
+					<file id="1" readingplan="1">
+						<info>Реестр авансовых обязательств/требований по договорам купли-продажи (поставки) мощности новых АЭС/ГЭС (покупатели) [Аванс 1]</info>
+						<filename>
+							<example>BELKAMKO_avans1ga_20190208_20190214_reestr_dpmga_con.xls</example>
+							<namesyntax>КодТОРГОВЦА_avans1ga_ГГГГММДД1_ГГГГММДД2_reestr_dpmga_con.xls, где: Я ГГГГ - год, ММ - месяц, ДД - день, ГГГГММДД1 - период отчета, ГГГГММДД2 - дата формирования отчета, КодТОРГОВЦА - например BELKAMKO</namesyntax>
+							<mask>^#TRADERCODE#_avans1ga_20\d\d[0-1]\d[0-3]\d_20\d\d[0-1]\d[0-3]\d_reestr_dpmga_con$</mask>						
+							<nameresolve splitter="_" period="2:DATESTAMP" trader="0:CODE" zone=""/>
+						</filename>
+					</file>
+					<file id="2" readingplan="1">
+						<info>Реестр авансовых обязательств/требований по договорам купли-продажи (поставки) мощности новых АЭС/ГЭС (покупатели) [Аванс 2]</info>
+						<filename>
+							<example>BELKAMKO_avans2ga_20190208_20190214_reestr_dpmga_con.xls</example>
+							<namesyntax>КодТОРГОВЦА_avans2ga_ГГГГММДД1_ГГГГММДД2_reestr_dpmga_con.xls, где: Я ГГГГ - год, ММ - месяц, ДД - день, ГГГГММДД1 - период отчета, ГГГГММДД2 - дата формирования отчета, КодТОРГОВЦА - например BELKAMKO</namesyntax>
+							<mask>^#TRADERCODE#_avans2ga_20\d\d[0-1]\d[0-3]\d_20\d\d[0-1]\d[0-3]\d_reestr_dpmga_con$</mask>						
+							<nameresolve splitter="_" period="2:DATESTAMP" trader="0:CODE" zone=""/>
+						</filename>
+					</file>
+				</files>
+				<readingplanes>
+					<readingplan id="1" readmethod="EXCEL" comment="План общий для обоих файлов отчета">
+						<sheet id="1" name="">
+							<validatefields>
+								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">реестр авансовых</validatefield>
+								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">аэс/гэс</validatefield>
+								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">(покупатели)</validatefield>
+								<validatefield row="3" col="1" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_CYR_N## ##CMD$PERIODDATE_YEAR_N_4##</validatefield>							
+								<validatefield row="4" col="2" static="1" casesense="0" comparemethod="consists">номер договора</validatefield>
+								<validatefield row="4" col="6" static="1" casesense="0" comparemethod="consists">код гтп потребления</validatefield>
+								<validatefield row="4" col="9" static="1" casesense="0" comparemethod="consists">код гтп генерации</validatefield>
+								<validatefield row="4" col="10" static="1" casesense="0" comparemethod="consists">дата платежа</validatefield>
+								<validatefield row="4" col="11" static="1" casesense="0" comparemethod="consists">объем мощности</validatefield>
+								<validatefield row="4" col="12" static="1" casesense="0" comparemethod="consists">без ндс</validatefield>
+								<validatefield row="4" col="14" static="1" casesense="0" comparemethod="consists">ндс</validatefield>							
+								<validatefield row="4" col="15" static="1" casesense="0" comparemethod="empty"/>
+								<validatefield row="6" col="10" static="1" casesense="0" comparemethod="empty"/>
+								<validatefield row="6" col="11" static="1" casesense="0" comparemethod="equal_trimmed">МВт</validatefield>
+								<validatefield row="6" col="12" static="1" casesense="0" comparemethod="equal_trimmed">руб.</validatefield>							
+								<validatefield row="7" col="1" static="1" casesense="0" comparemethod="equal_trimmed">1</validatefield>							
+							</validatefields>
+							<reading method="SIMPLE" submethod="ROWS" direction="UP" datastart="7" emptyitemlimit="0">							
+								<datafield id="ats_contract_code" datatype="ATS_CONTRACT_CODE" row="0" col="2"/>
+								<datafield id="ats_contract_date" datatype="DATESTAMP" row="0" col="3"/>
+								<datafield id="trader_name" datatype="TRADER_NAME" row="0" col="4"/>
+								<datafield id="trader_code" datatype="TRADER_CODE" row="0" col="5"/>
+								<datafield id="gtp_code" datatype="GTP_CODE" row="0" col="6"/>
+								<datafield id="trader_name_adjacent" datatype="TRADER_NAME" row="0" col="7"/>
+								<datafield id="trader_code_adjacent" datatype="TRADER_CODE" row="0" col="8"/>
+								<datafield id="gtp_code_adjacent" datatype="GTP_CODE" row="0" col="9"/>
+								<datafield id="ats_contract_payment_date" datatype="DATESTAMP" row="0" col="10"/>							
+								<datafield id="advance_calc_power" datatype="POWER_M" row="0" col="11"/>
+								<datafield id="advance_payment" datatype="MONEY_RUB" row="0" col="12"/>
+								<datafield id="advance_nds_payment" datatype="MONEY_RUB" row="0" col="14"/>
+								<datafield id="advance_full_payment" datatype="MONEY_RUB" row="0" col="13"/>							
+							</reading>
+							<fielddescriptions>							
+								<fielddescription id="ats_contract_code">Номер договора АЭС ГЭС</fielddescription>
+								<fielddescription id="ats_contract_date">Дата подписания договора АЭС ГЭС</fielddescription>						
+								<fielddescription id="trader_name">Наименование Участника ОРЭ - покупателя</fielddescription>
+								<fielddescription id="trader_code">Идентификационный код Участника ОРЭ - покупателя</fielddescription>
+								<fielddescription id="gtp_code">Код ГТП потребления</fielddescription>
+								<fielddescription id="trader_name_adjacent">Наименование Участника ОРЭ - продавца</fielddescription>
+								<fielddescription id="trader_code_adjacent">Идентификационный код Участника ОРЭ - продавца</fielddescription>						
+								<fielddescription id="gtp_code_adjacent">Код ГТП генерации</fielddescription>
+								<fielddescription id="ats_contract_payment_date">Дата платежа</fielddescription>
+								<fielddescription id="advance_calc_power">Объем мощности , используемый для расчета авансовых обязательств по договору АЭС/ГЭС</fielddescription>
+								<fielddescription id="advance_payment">Авансовое обязательство по договору АЭС ГЭС (без НДС)</fielddescription>
+								<fielddescription id="advance_nds_payment">В т.ч. НДС</fielddescription>
+								<fielddescription id="advance_full_payment">Авансовое обязательство по договору АЭС ГЭС</fielddescription>
+							</fielddescriptions>
+						</sheet>
+					</readingplan>
+				</readingplanes>				
+			</version>
+		</report>
+	</reportlist>
+	<readmethods>
+		<readmethod id="EXCEL" extensionlist="xls;xlsx;xlsm"/>
+		<readmethod id="XML" extensionlist="xml"/>
+	</readmethods>
+	<datatypes>
+		<datatype id="TRADER_NAME" data="STRING" minlen="1" maxlen="" description="Наименование участника"/>
+		<datatype id="GTP_CODE" data="STRING" minlen="8" maxlen="8" description="Код ГТП"/>
+		<datatype id="TRADER_CODE" data="STRING" minlen="8" maxlen="8" description="Код Участника"/>
+		<datatype id="ATS_CONTRACT_CODE" data="STRING" minlen="5" maxlen="" description="Номер договора с участником оптовой торговли ЭЭ формата АТС"/>
+		<datatype id="DATESTAMP" data="DATETIME" description="Дата"/>
+		<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="МВт" description="Мощность"/>
+		<datatype id="POWER" data="NUMERIC" sizemulitiplier="1" unit="кВт" description="Мощность"/>
+		<datatype id="MONEY_RUB" data="NUMERIC" sizemulitiplier="1" unit="руб" description="Деньги"/>
+	</datatypes>
+</message>
