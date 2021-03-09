@@ -192,6 +192,23 @@
 				</readingplanes>				
 			</version>
 		</report>
+		<report name="FINREPORT_PZ">
+			<version id="1" releasedate="20130101" targetperiod="M" tradezones="0" enabled="1">
+				<files>
+					<file id="1" readingplan="1">
+						<info>‘инансовый отчет о результатах расчетов объемов и стоимости электроэнергии и мощности на оптовом рынке</info>
+						<filename>
+							<example>‘инансовый отчет BELKAMKO (за €нварь 2021 г.).xls</example>
+							<namesyntax>‘инансовый отчет  од“ќ–√ќ¬÷ј (за ћћћћ √√√√ г.).xls, где: я √√√√ - год, ћћћћ - мес€ц текстом (именительный),  од“ќ–√ќ¬÷ј - например BELKAMKO</namesyntax>
+							<mask>^‘инансовый отчет BELKAMKO \(за (€нварь|февраль|март|апрель|май|июнь|июль|август|сент€брь|окт€брь|но€брь|декабрь) 20\d\d г.\)$</mask>						
+							<nameresolve splitter=" " period="4:MONTH_TEXT_RU;5:YEAR" trader="2:CODE" zone=""/>
+						</filename>
+					</file>
+				</files>
+				<readingplanes>
+				</readingplanes>
+			</version>
+		</report>
 	</reportlist>
 	<readmethods>
 		<readmethod id="EXCEL" extensionlist="xls;xlsx;xlsm"/>

@@ -1,6 +1,6 @@
-'Проект "КонвертерОтчетов" v003 от 04.03.2021
+'РџСЂРѕРµРєС‚ "РљРѕРЅРІРµСЂС‚РµСЂРћС‚С‡РµС‚РѕРІ" v003 РѕС‚ 04.03.2021
 '
-'ОПИСАНИЕ: Извлекает данные из отчетов АТС описанных в RSet и представляет их в виде RData XML (собственный формат)
+'РћРџРРЎРђРќРР•: РР·РІР»РµРєР°РµС‚ РґР°РЅРЅС‹Рµ РёР· РѕС‚С‡РµС‚РѕРІ РђРўРЎ РѕРїРёСЃР°РЅРЅС‹С… РІ RSet Рё РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РёС… РІ РІРёРґРµ RData XML (СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ С„РѕСЂРјР°С‚)
 
 Option Explicit
 
@@ -12,18 +12,18 @@ Dim uD2S(255)
 Private Function fMonthD2C(inMonth)
     fMonthD2C = vbNullString
     Select Case inMonth
-        Case 1:     fMonthD2C = "январь"
-        Case 2:     fMonthD2C = "февраль"
-        Case 3:     fMonthD2C = "март"
-        Case 4:     fMonthD2C = "апрель"
-        Case 5:     fMonthD2C = "май"
-        Case 6:     fMonthD2C = "июнь"
-        Case 7:     fMonthD2C = "июль"
-        Case 8:     fMonthD2C = "август"
-        Case 9:     fMonthD2C = "сентябрь"
-        Case 10:    fMonthD2C = "октябрь"
-        Case 11:    fMonthD2C = "ноябрь"
-        Case 12:    fMonthD2C = "декабрь"
+        Case 1:     fMonthD2C = "СЏРЅРІР°СЂСЊ"
+        Case 2:     fMonthD2C = "С„РµРІСЂР°Р»СЊ"
+        Case 3:     fMonthD2C = "РјР°СЂС‚"
+        Case 4:     fMonthD2C = "Р°РїСЂРµР»СЊ"
+        Case 5:     fMonthD2C = "РјР°Р№"
+        Case 6:     fMonthD2C = "РёСЋРЅСЊ"
+        Case 7:     fMonthD2C = "РёСЋР»СЊ"
+        Case 8:     fMonthD2C = "Р°РІРіСѓСЃС‚"
+        Case 9:     fMonthD2C = "СЃРµРЅС‚СЏР±СЂСЊ"
+        Case 10:    fMonthD2C = "РѕРєС‚СЏР±СЂСЊ"
+        Case 11:    fMonthD2C = "РЅРѕСЏР±СЂСЊ"
+        Case 12:    fMonthD2C = "РґРµРєР°Р±СЂСЊ"
     End Select
 End Function
 
@@ -31,18 +31,18 @@ End Function
 Private Function fMonthC2D(inMonth)
     fMonthC2D = 0
     Select Case Trim(LCase(inMonth))
-        Case "январь", "января":		fMonthC2D = 1
-        Case "февраль", "февраля":		fMonthC2D = 2
-        Case "март", "марта":			fMonthC2D = 3
-        Case "апрель", "апреля":		fMonthC2D = 4
-        Case "май", "мая":				fMonthC2D = 5
-        Case "июнь", "июня":        	fMonthC2D = 6
-        Case "июль", "июля":			fMonthC2D = 7
-        Case "август", "августа":		fMonthC2D = 8
-        Case "сентябрь", "сентября":	fMonthC2D = 9
-        Case "октябрь", "октября":		fMonthC2D = 10
-        Case "ноябрь", "ноября":		fMonthC2D = 11
-        Case "декабрь", "декабря":		fMonthC2D = 12
+        Case "СЏРЅРІР°СЂСЊ", "СЏРЅРІР°СЂСЏ", "СЏРЅРІ":		fMonthC2D = 1
+        Case "С„РµРІСЂР°Р»СЊ", "С„РµРІСЂР°Р»СЏ", "С„РµРІ":		fMonthC2D = 2
+        Case "РјР°СЂС‚", "РјР°СЂС‚Р°", "РјР°СЂ":			fMonthC2D = 3
+        Case "Р°РїСЂРµР»СЊ", "Р°РїСЂРµР»СЏ", "Р°РїСЂ":		fMonthC2D = 4
+        Case "РјР°Р№", "РјР°СЏ":				fMonthC2D = 5
+        Case "РёСЋРЅСЊ", "РёСЋРЅСЏ", "РёСЋРЅ":        	fMonthC2D = 6
+        Case "РёСЋР»СЊ", "РёСЋР»СЏ", "РёСЋР»":			fMonthC2D = 7
+        Case "Р°РІРіСѓСЃС‚", "Р°РІРіСѓСЃС‚Р°", "Р°РІРі":		fMonthC2D = 8
+        Case "СЃРµРЅС‚СЏР±СЂСЊ", "СЃРµРЅС‚СЏР±СЂСЏ", "СЃРµРЅ":	fMonthC2D = 9
+        Case "РѕРєС‚СЏР±СЂСЊ", "РѕРєС‚СЏР±СЂСЏ", "РѕРєС‚":		fMonthC2D = 10
+        Case "РЅРѕСЏР±СЂСЊ", "РЅРѕСЏР±СЂСЏ", "РЅРѕСЏ":		fMonthC2D = 11
+        Case "РґРµРєР°Р±СЂСЊ", "РґРµРєР°Р±СЂСЏ", "РґРµРє":		fMonthC2D = 12
     End Select
 End Function
 
@@ -167,7 +167,7 @@ Private Function fGetXMLRData(inFolderList, outFilePath, outXMLObject)
 	Set outXMLObject = Nothing
 	outFilePath = vbNullString
 	tFolderPath = vbNullString
-	fLogLine tLogVal, "Поиск RData XML > " & inFolderList
+	fLogLine tLogVal, "РџРѕРёСЃРє RData XML > " & inFolderList
 	tPathList = Split(inFolderList, ";")
 	'inPathList = vbNullString
 	Set tTempXML = CreateObject("Msxml2.DOMDocument.6.0")
@@ -198,7 +198,7 @@ Private Function fGetXMLRData(inFolderList, outFilePath, outXMLObject)
 						tValue = tNode.getAttribute("releasestamp")
                         If fCheckTimeStamp(tValue) Then 'release stamp correct?
                             tLock = True
-							fLogLine tLogVal, "RData XML Найден > " & tFilePath
+							fLogLine tLogVal, "RData XML РќР°Р№РґРµРЅ > " & tFilePath
                         End If
 					End If
 				End If
@@ -217,15 +217,15 @@ Private Function fGetXMLRData(inFolderList, outFilePath, outXMLObject)
 		inFolderList = tFolderPath
 		fGetXMLRData = True
 	Else
-		'WScript.Echo "Ошибка! XML файл RData не найден!"
-		fLogLine tLogVal, "Файл RData XML не был найден. Попытка создания нового файла RData XML."
+		'WScript.Echo "РћС€РёР±РєР°! XML С„Р°Р№Р» RData РЅРµ РЅР°Р№РґРµРЅ!"
+		fLogLine tLogVal, "Р¤Р°Р№Р» RData XML РЅРµ Р±С‹Р» РЅР°Р№РґРµРЅ. РџРѕРїС‹С‚РєР° СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ С„Р°Р№Р»Р° RData XML."
 		If fCreateBlankRDataXML(outXMLObject, tFilePath) Then
 			outFilePath = tFilePath
 			inFolderList = tFolderPath
 			fGetXMLRData = True
-			fLogLine tLogVal, "Создан новый файл RData XML > " & tFilePath
+			fLogLine tLogVal, "РЎРѕР·РґР°РЅ РЅРѕРІС‹Р№ С„Р°Р№Р» RData XML > " & tFilePath
 		Else
-			fLogLine tLogVal, "Создание нового файла RData XML не удалось!"
+			fLogLine tLogVal, "РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ С„Р°Р№Р»Р° RData XML РЅРµ СѓРґР°Р»РѕСЃСЊ!"
 		End If
 	End If	
 End Function
@@ -233,28 +233,28 @@ End Function
 'fCreateBlankRDataXML - creates BLANK file for XML RData
 Private Function fCreateBlankRDataXML(outXML, inFilePath)
 	Dim tRoot, tComment, tIntro, tNode
-	'01 // Инициация
+	'01 // РРЅРёС†РёР°С†РёСЏ
 	fCreateBlankRDataXML = False
 	Set outXML = CreateObject("Msxml2.DOMDocument.6.0")
     'outXML.ASync = False
     'outXML.Load (inFilePath)
 	
-	'02 // Кореневая нода макета MESSAGE
+	'02 // РљРѕСЂРµРЅРµРІР°СЏ РЅРѕРґР° РјР°РєРµС‚Р° MESSAGE
     Set tRoot = outXML.CreateElement("message")
     outXML.AppendChild tRoot
     tRoot.SetAttribute "class", "RDATA" 'CLASS
     tRoot.SetAttribute "version", 1 'VERSION
     tRoot.SetAttribute "releasestamp", 0 'TIMESTAMP
 	
-	'03 // Комментарий
-    Set tComment = outXML.CreateComment("Данные отчетов АТС приведеные к единой информационной форме")
+	'03 // РљРѕРјРјРµРЅС‚Р°СЂРёР№
+    Set tComment = outXML.CreateComment("Р”Р°РЅРЅС‹Рµ РѕС‚С‡РµС‚РѕРІ РђРўРЎ РїСЂРёРІРµРґРµРЅС‹Рµ Рє РµРґРёРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅРѕР№ С„РѕСЂРјРµ")
     outXML.InsertBefore tComment, outXML.ChildNodes(0)
     
-	'04 // Заголовок
+	'04 // Р—Р°РіРѕР»РѕРІРѕРє
     Set tIntro = outXML.CreateProcessingInstruction("xml", "version='1.0' encoding='Windows-1251' standalone='yes'")
     outXML.InsertBefore tIntro, outXML.ChildNodes(0)
 	
-	'05 // Сохранение
+	'05 // РЎРѕС…СЂР°РЅРµРЅРёРµ
 	fSaveXMLRDataChanges inFilePath, outXML
 	fCreateBlankRDataXML = True
 End Function
@@ -278,7 +278,7 @@ Private Function fGetXMLRSet(inFolderPath, outFilePath, outXMLObject)
 	outFilePath = vbNullString
 	tLogVal = "RSET"
 	tFileName = "RSet.xml"
-	fLogLine tLogVal, "Поиск RSet XML > " & inFolderPath
+	fLogLine tLogVal, "РџРѕРёСЃРє RSet XML > " & inFolderPath
 	Set tTempXML = CreateObject("Msxml2.DOMDocument.6.0")
 	tTempXML.ASync = False	
 	tLock = False
@@ -300,7 +300,7 @@ Private Function fGetXMLRSet(inFolderPath, outFilePath, outXMLObject)
 					tValue = tNode.getAttribute("releasestamp")
 					If fCheckTimeStamp(tValue) Then 'release stamp correct?
 						tLock = True
-						fLogLine tLogVal, "Найден RSet XML > " & tFilePath	
+						fLogLine tLogVal, "РќР°Р№РґРµРЅ RSet XML > " & tFilePath	
 					End If					
 				End If				
 			End If			
@@ -317,8 +317,8 @@ Private Function fGetXMLRSet(inFolderPath, outFilePath, outXMLObject)
 		outFilePath = tFilePath
 		fGetXMLRSet = True
 	Else
-		WScript.Echo "Ошибка! XML файл RSet не найден!"
-		fLogLine tLogVal, "Файл RSet XML не был найден."
+		WScript.Echo "РћС€РёР±РєР°! XML С„Р°Р№Р» RSet РЅРµ РЅР°Р№РґРµРЅ!"
+		fLogLine tLogVal, "Р¤Р°Р№Р» RSet XML РЅРµ Р±С‹Р» РЅР°Р№РґРµРЅ."
 	End If	
 End Function
 
@@ -360,23 +360,23 @@ End Function
 Private Function fDaysPerMonth(inMonth, inYear)
     fDaysPerMonth = 0
     Select Case LCase(inMonth)
-        Case "январь", 1:       fDaysPerMonth = 31
-        Case "февраль", 2:
+        Case "СЏРЅРІР°СЂСЊ", 1:       fDaysPerMonth = 31
+        Case "С„РµРІСЂР°Р»СЊ", 2:
             If (inYear Mod 4) = 0 Then
                                 fDaysPerMonth = 29
             Else
                                 fDaysPerMonth = 28
             End If
-        Case "март", 3:         fDaysPerMonth = 31
-        Case "апрель", 4:       fDaysPerMonth = 30
-        Case "май", 5:          fDaysPerMonth = 31
-        Case "июнь", 6:         fDaysPerMonth = 30
-        Case "июль", 7:         fDaysPerMonth = 31
-        Case "август", 8:       fDaysPerMonth = 31
-        Case "сентябрь", 9:     fDaysPerMonth = 30
-        Case "октябрь", 10:     fDaysPerMonth = 31
-        Case "ноябрь", 11:      fDaysPerMonth = 30
-        Case "декабрь", 12:     fDaysPerMonth = 31
+        Case "РјР°СЂС‚", 3:         fDaysPerMonth = 31
+        Case "Р°РїСЂРµР»СЊ", 4:       fDaysPerMonth = 30
+        Case "РјР°Р№", 5:          fDaysPerMonth = 31
+        Case "РёСЋРЅСЊ", 6:         fDaysPerMonth = 30
+        Case "РёСЋР»СЊ", 7:         fDaysPerMonth = 31
+        Case "Р°РІРіСѓСЃС‚", 8:       fDaysPerMonth = 31
+        Case "СЃРµРЅС‚СЏР±СЂСЊ", 9:     fDaysPerMonth = 30
+        Case "РѕРєС‚СЏР±СЂСЊ", 10:     fDaysPerMonth = 31
+        Case "РЅРѕСЏР±СЂСЊ", 11:      fDaysPerMonth = 30
+        Case "РґРµРєР°Р±СЂСЊ", 12:     fDaysPerMonth = 31
     End Select
     If inYear <= 0 Then: fDaysPerMonth = 0
 End Function
@@ -464,11 +464,11 @@ Private Sub fOpenBook(outWorkBook, inFile)
 	On Error Resume Next
 		Set outWorkBook = gExcel.Workbooks.Open (inFile.Path, False, True)		
 		If Err.Number > 0 Then
-			'WScript.Echo "Произошла ошибка открытия файла." & vbCrLf & "Данный отчет будет пропущен!" & vbCrLf & vbCrLf & "FilePath: " & vbTab & inFile.Path & vbCrLf & vbCrLf & "FileName: " & vbTab & inFile.Name & vbCrLf & vbCrLf & "Reason: " & vbTab & Err.Description
-			fLogLine "OPENBOOK", "Не удалось окрыть книгу! Отчет будет пропущен."
+			'WScript.Echo "РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°." & vbCrLf & "Р”Р°РЅРЅС‹Р№ РѕС‚С‡РµС‚ Р±СѓРґРµС‚ РїСЂРѕРїСѓС‰РµРЅ!" & vbCrLf & vbCrLf & "FilePath: " & vbTab & inFile.Path & vbCrLf & vbCrLf & "FileName: " & vbTab & inFile.Name & vbCrLf & vbCrLf & "Reason: " & vbTab & Err.Description
+			fLogLine "OPENBOOK", "РќРµ СѓРґР°Р»РѕСЃСЊ РѕРєСЂС‹С‚СЊ РєРЅРёРіСѓ! РћС‚С‡РµС‚ Р±СѓРґРµС‚ РїСЂРѕРїСѓС‰РµРЅ."
 			Set outWorkBook = Nothing
-		ElseIf outWorkBook.WorkSheets.Count = 0 Then 'Вроде это невозможно
-			fLogLine "OPENBOOK", "В книге нет листов! Отчет будет пропущен."
+		ElseIf outWorkBook.WorkSheets.Count = 0 Then 'Р’СЂРѕРґРµ СЌС‚Рѕ РЅРµРІРѕР·РјРѕР¶РЅРѕ
+			fLogLine "OPENBOOK", "Р’ РєРЅРёРіРµ РЅРµС‚ Р»РёСЃС‚РѕРІ! РћС‚С‡РµС‚ Р±СѓРґРµС‚ РїСЂРѕРїСѓС‰РµРЅ."
 			Set outWorkBook = Nothing
 		End If
 	On Error GoTo 0
@@ -556,12 +556,12 @@ Private Function fGetNodeCount(inXML, inChangeTrigger, inLogBlockName, inNodePat
 	fGetNodeCount = -1 'XML reading error
 	inChangeTrigger = False
 	If inXML is Nothing Then 
-		fLogLine inLogBlockName, "Непредвиденная ошибка! Не удалось прочитать XML RData."
+		fLogLine inLogBlockName, "РќРµРїСЂРµРґРІРёРґРµРЅРЅР°СЏ РѕС€РёР±РєР°! РќРµ СѓРґР°Р»РѕСЃСЊ РїСЂРѕС‡РёС‚Р°С‚СЊ XML RData."
 		Exit Function
 	End If
 	Set tNode = inXML.SelectNodes(inNodePath)
 	If tNode.Length > 1 Then 'Autofixer
-		fLogLine inLogBlockName, "Количество записей " & tNode.Length & ", что является нарушением структуры XML RData. Производится принудительная очистка."
+		fLogLine inLogBlockName, "РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ " & tNode.Length & ", С‡С‚Рѕ СЏРІР»СЏРµС‚СЃСЏ РЅР°СЂСѓС€РµРЅРёРµРј СЃС‚СЂСѓРєС‚СѓСЂС‹ XML RData. РџСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅР°СЏ РѕС‡РёСЃС‚РєР°."
 		'Delete nodes
 		For tIndex = 0 to tNode.Length - 1
 			tNode(tIndex).ParentNode.RemoveChild(tNode(tIndex))
@@ -570,10 +570,10 @@ Private Function fGetNodeCount(inXML, inChangeTrigger, inLogBlockName, inNodePat
 		'Recheck nodes
 		Set tNode = inXML.SelectNodes(inNodePath)
 		If tNode.Length > 0 Then
-			fLogLine inLogBlockName, "Непредвиденная ошибка! Количество записей " & tNode.Length & " (должно быть 0)."
+			fLogLine inLogBlockName, "РќРµРїСЂРµРґРІРёРґРµРЅРЅР°СЏ РѕС€РёР±РєР°! РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ " & tNode.Length & " (РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 0)."
 			Exit Function
 		End If
-		fLogLine inLogBlockName, "Принудительная очистка завершена успешно (количество записей 0)."
+		fLogLine inLogBlockName, "РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅР°СЏ РѕС‡РёСЃС‚РєР° Р·Р°РІРµСЂС€РµРЅР° СѓСЃРїРµС€РЅРѕ (РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№ 0)."
 	End If
 	fGetNodeCount = tNode.Length
 End Function
@@ -590,7 +590,7 @@ Private Sub fDataReadCheck(inResult, inVariable, inWorkSheet, inRow, inCol, inTy
 				inVariable = tValue
 			Else
 				inResult = False
-				inErr = "Ошибка при чтении ячейки " & uD2S(inCol) & inRow & " - нецифровое значение. " & inErr
+				inErr = "РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё СЏС‡РµР№РєРё " & uD2S(inCol) & inRow & " - РЅРµС†РёС„СЂРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ. " & inErr
 			End If
 		Case "numtry": 'Get NUMBER if possible (else as zero)
 			If IsNumeric(tValue) Then
@@ -603,7 +603,7 @@ Private Sub fDataReadCheck(inResult, inVariable, inWorkSheet, inRow, inCol, inTy
 				inVariable = tValue
 			Else
 				inResult = False
-				inErr = "Ошибка при чтении ячейки " & uD2S(inCol) & inRow & " - не является датой. " & inErr
+				inErr = "РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё СЏС‡РµР№РєРё " & uD2S(inCol) & inRow & " - РЅРµ СЏРІР»СЏРµС‚СЃСЏ РґР°С‚РѕР№. " & inErr
 			End If
 		Case "gtp":
 			tSubValue = fGetGTPCode(tValue)
@@ -611,57 +611,57 @@ Private Sub fDataReadCheck(inResult, inVariable, inWorkSheet, inRow, inCol, inTy
 				inVariable = tSubValue
 			Else
 				inResult = False
-				inErr = "Ошибка при чтении ячейки " & uD2S(inCol) & inRow & " - не является кодом ГТП. " & inErr
+				inErr = "РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё СЏС‡РµР№РєРё " & uD2S(inCol) & inRow & " - РЅРµ СЏРІР»СЏРµС‚СЃСЏ РєРѕРґРѕРј Р“РўРџ. " & inErr
 			End If
 		Case "traderid":
 			If fIsTraderID(tValue) Then
 				inVariable = tValue
 			Else
 				inResult = False
-				inErr = "Ошибка при чтении ячейки " & uD2S(inCol) & inRow & " - не является кодом торговца. " & inErr
+				inErr = "РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё СЏС‡РµР№РєРё " & uD2S(inCol) & inRow & " - РЅРµ СЏРІР»СЏРµС‚СЃСЏ РєРѕРґРѕРј С‚РѕСЂРіРѕРІС†Р°. " & inErr
 			End If
 		Case Else:
 			inResult = False
-			inErr = "Ошибка при чтении ячейки " & uD2S(inCol) & inRow & " - не задан тип. " & inErr
+			inErr = "РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё СЏС‡РµР№РєРё " & uD2S(inCol) & inRow & " - РЅРµ Р·Р°РґР°РЅ С‚РёРї. " & inErr
 	End Select
 End Sub
 
 'MAIN \\ STEP 2 \\ Report Inject Resolver
 Private Sub fCheckInjectReport(inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, inModel)
 	Dim tNode, tModifyDate, tInjectTrigger, tUpdateTrigger, tIsInjected, tIndex, tNumber, tDateDiffResult, tNodeCount, tLogBlockName, tXPathString, tReplaceTrigger
-	'00 // Определение переменных
+	'00 // РћРїСЂРµРґРµР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С…
 	tInjectTrigger = False	
 	tIsInjected = False	
 	tNumber = 0
-	gProgressBar.ClassInfo = "Отчет: " & inCode
+	gProgressBar.ClassInfo = "РћС‚С‡РµС‚: " & inCode
 	tLogBlockName = "CHKINJECT"
 	tXPathString = "//data/rtype[@code='" & inCode & "']/owner[@traderid='" & inTraderID & "']/report[@zone='" & inZone & "' and @year='" & inYear & "' and @month='" & inMonth & "' and @day='" & inDay & "']"
-	'01 // Поиск записей отчета с такими же данными как у нового
-	fLogLine tLogBlockName, "СТАРТ. Файл <" & inFile.Name & "> опознан как отчет " & inCode & "."	
-	fLogLine tLogBlockName, "Инициирована проверка отчета " & inCode & " для торговца " & inTraderID & " на период " & inYear & inMonth & inDay & " (зона - " & inZone & ")."
+	'01 // РџРѕРёСЃРє Р·Р°РїРёСЃРµР№ РѕС‚С‡РµС‚Р° СЃ С‚Р°РєРёРјРё Р¶Рµ РґР°РЅРЅС‹РјРё РєР°Рє Сѓ РЅРѕРІРѕРіРѕ
+	fLogLine tLogBlockName, "РЎРўРђР Рў. Р¤Р°Р№Р» <" & inFile.Name & "> РѕРїРѕР·РЅР°РЅ РєР°Рє РѕС‚С‡РµС‚ " & inCode & "."	
+	fLogLine tLogBlockName, "РРЅРёС†РёРёСЂРѕРІР°РЅР° РїСЂРѕРІРµСЂРєР° РѕС‚С‡РµС‚Р° " & inCode & " РґР»СЏ С‚РѕСЂРіРѕРІС†Р° " & inTraderID & " РЅР° РїРµСЂРёРѕРґ " & inYear & inMonth & inDay & " (Р·РѕРЅР° - " & inZone & ")."
 	tNodeCount = fGetNodeCount(gXML, tUpdateTrigger, tLogBlockName, tXPathString)
 	If tNodeCount = -1 Then 
 		fQuitScript		
 	ElseIf tUpdateTrigger Then
 		fSaveXMLRDataChanges gXMLFilePathLock, gXML
 	End If	
-	'02 // Решение о внесении нового отчета в текущий XML RData
+	'02 // Р РµС€РµРЅРёРµ Рѕ РІРЅРµСЃРµРЅРёРё РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° РІ С‚РµРєСѓС‰РёР№ XML RData
 	Set tNode = gXML.SelectNodes(tXPathString & "/source/modify")
-	'02.A // Если записей отчета нет, то выносим решение о необходимости создания записи
+	'02.A // Р•СЃР»Рё Р·Р°РїРёСЃРµР№ РѕС‚С‡РµС‚Р° РЅРµС‚, С‚Рѕ РІС‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё СЃРѕР·РґР°РЅРёСЏ Р·Р°РїРёСЃРё
 	If tNode.Length = 0 Then
 		tInjectTrigger = True
-		fLogLine tLogBlockName, "Записей не обнаружено, будет произведена попытка инъекции данного отчета."
-	'02.B // Если запись есть, то необходимо сверить дату записи и дату нового отчета (если новый отчет "новее", то стираем старую запись, и выносим решение о необходимости создания новой записи)
+		fLogLine tLogBlockName, "Р—Р°РїРёСЃРµР№ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ, Р±СѓРґРµС‚ РїСЂРѕРёР·РІРµРґРµРЅР° РїРѕРїС‹С‚РєР° РёРЅСЉРµРєС†РёРё РґР°РЅРЅРѕРіРѕ РѕС‚С‡РµС‚Р°."
+	'02.B // Р•СЃР»Рё Р·Р°РїРёСЃСЊ РµСЃС‚СЊ, С‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ СЃРІРµСЂРёС‚СЊ РґР°С‚Сѓ Р·Р°РїРёСЃРё Рё РґР°С‚Сѓ РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° (РµСЃР»Рё РЅРѕРІС‹Р№ РѕС‚С‡РµС‚ "РЅРѕРІРµРµ", С‚Рѕ СЃС‚РёСЂР°РµРј СЃС‚Р°СЂСѓСЋ Р·Р°РїРёСЃСЊ, Рё РІС‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕР№ Р·Р°РїРёСЃРё)
 	Else		
 		tReplaceTrigger = True
 		tModifyDate = tNode(0).Text
 		If IsDate(tModifyDate) Then
 			tModifyDate = CDate(tModifyDate)
 			tDateDiffResult = DateDiff("s", tModifyDate, inFile.DateLastModified)
-			fLogLine tLogBlockName, "Обнаруженный отчет новее на " & tDateDiffResult & " сек. Новый: <" & inFile.DateLastModified & "> Текущий: <" & tModifyDate & ">"
+			fLogLine tLogBlockName, "РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Р№ РѕС‚С‡РµС‚ РЅРѕРІРµРµ РЅР° " & tDateDiffResult & " СЃРµРє. РќРѕРІС‹Р№: <" & inFile.DateLastModified & "> РўРµРєСѓС‰РёР№: <" & tModifyDate & ">"
 			If tDateDiffResult <= 0 Then: tReplaceTrigger = False 'new report has older or equal timestamp
 		Else
-			fLogLine tLogBlockName, "Обнаруженный отчет содержит неверные данные (не дата) в блоке REPORT/SOURCE/MODIFY."
+			fLogLine tLogBlockName, "РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Р№ РѕС‚С‡РµС‚ СЃРѕРґРµСЂР¶РёС‚ РЅРµРІРµСЂРЅС‹Рµ РґР°РЅРЅС‹Рµ (РЅРµ РґР°С‚Р°) РІ Р±Р»РѕРєРµ REPORT/SOURCE/MODIFY."
 		End If
 		'Delete old report
 		If tReplaceTrigger Then
@@ -675,15 +675,15 @@ Private Sub fCheckInjectReport(inFile, inCode, inTraderID, inYear, inMonth, inDa
 				tNumber = 0
 			End If				
 			tNode.ParentNode.RemoveChild(tNode)
-			fLogLine tLogBlockName, "Удаление более старой записи отчета (номер отчета - " & tNumber & ")."
+			fLogLine tLogBlockName, "РЈРґР°Р»РµРЅРёРµ Р±РѕР»РµРµ СЃС‚Р°СЂРѕР№ Р·Р°РїРёСЃРё РѕС‚С‡РµС‚Р° (РЅРѕРјРµСЂ РѕС‚С‡РµС‚Р° - " & tNumber & ")."
 		End If
 	End If
-	'03 // Обработка решения о внесении нового отчета в текущий XML RData
-	fLogLine tLogBlockName, "Решение о необходимости новой инъекции отчета - " & tInjectTrigger & "."
+	'03 // РћР±СЂР°Р±РѕС‚РєР° СЂРµС€РµРЅРёСЏ Рѕ РІРЅРµСЃРµРЅРёРё РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° РІ С‚РµРєСѓС‰РёР№ XML RData
+	fLogLine tLogBlockName, "Р РµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РЅРѕРІРѕР№ РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р° - " & tInjectTrigger & "."
 	If tInjectTrigger Then ': fInjectReport inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, inVersion, tReplaceTrigger
-	'04 // При ПОЛОЖИТЕЛЬНОМ решении вызываем необходимый обработчик отчета		
+	'04 // РџСЂРё РџРћР›РћР–РРўР•Р›Р¬РќРћРњ СЂРµС€РµРЅРёРё РІС‹Р·С‹РІР°РµРј РЅРµРѕР±С…РѕРґРёРјС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє РѕС‚С‡РµС‚Р°		
 		tNumber = tNumber + 1	'Set report number
-		fLogLine tLogBlockName, "Номер отчета для новой инъекции - " & tNumber & "."		
+		fLogLine tLogBlockName, "РќРѕРјРµСЂ РѕС‚С‡РµС‚Р° РґР»СЏ РЅРѕРІРѕР№ РёРЅСЉРµРєС†РёРё - " & tNumber & "."		
 		Select Case inCode	'Inject new report
 			Case "KOM_AVANS_GTP": 			tIsInjected = fInject_KOM_AVANS_GTP(inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, tNumber, inModel)
 			Case "KOM_AVANS_CONTRACT_P1": 	tIsInjected = fInject_KOM_AVANS_CONTRACT(inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, tNumber, inModel)
@@ -704,19 +704,19 @@ Private Sub fCheckInjectReport(inFile, inCode, inTraderID, inYear, inMonth, inDa
 			Case "RSV_FACT": 				tIsInjected = fInject_RSV_FACT(inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, tNumber, inModel)
 			Case "FIN_FACT": 				tIsInjected = fInject_FIN_FACT(inFile, inCode, inTraderID, inYear, inMonth, inDay, inZone, tNumber, inModel)
 		End Select
-	'05 // Выносим решение о сохранении изменений в XML RData 
-		fLogLine "CHKINJECT", "Готовность инъекции отчета к сохранению - " & tIsInjected & "."
+	'05 // Р’С‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ СЃРѕС…СЂР°РЅРµРЅРёРё РёР·РјРµРЅРµРЅРёР№ РІ XML RData 
+		fLogLine "CHKINJECT", "Р“РѕС‚РѕРІРЅРѕСЃС‚СЊ РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р° Рє СЃРѕС…СЂР°РЅРµРЅРёСЋ - " & tIsInjected & "."
 		If tIsInjected Then			
-	'06 // Если ошибок не произошло, то сохраняем изменения
-			fLogLine tLogBlockName, "КОНЕЦ. Сохранение изменений RData XML."
+	'06 // Р•СЃР»Рё РѕС€РёР±РѕРє РЅРµ РїСЂРѕРёР·РѕС€Р»Рѕ, С‚Рѕ СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
+			fLogLine tLogBlockName, "РљРћРќР•Р¦. РЎРѕС…СЂР°РЅРµРЅРёРµ РёР·РјРµРЅРµРЅРёР№ RData XML."
 			fSaveXMLRDataChanges gXMLFilePathLock, gXML			
 		Else
-	'07 // Если были ошибки чтения нового отчета из источника, то отменяем любые внесенные изменения обработчиками отчетов выше
-			fLogLine tLogBlockName, "КОНЕЦ. Откат изменений RData XML."
+	'07 // Р•СЃР»Рё Р±С‹Р»Рё РѕС€РёР±РєРё С‡С‚РµРЅРёСЏ РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° РёР· РёСЃС‚РѕС‡РЅРёРєР°, С‚Рѕ РѕС‚РјРµРЅСЏРµРј Р»СЋР±С‹Рµ РІРЅРµСЃРµРЅРЅС‹Рµ РёР·РјРµРЅРµРЅРёСЏ РѕР±СЂР°Р±РѕС‚С‡РёРєР°РјРё РѕС‚С‡РµС‚РѕРІ РІС‹С€Рµ
+			fLogLine tLogBlockName, "РљРћРќР•Р¦. РћС‚РєР°С‚ РёР·РјРµРЅРµРЅРёР№ RData XML."
 			fReloadXMLRData gXMLFilePathLock, gXML
 		End If
 	Else
-		fLogLine tLogBlockName, "КОНЕЦ. Отчет пропущен."
+		fLogLine tLogBlockName, "РљРћРќР•Р¦. РћС‚С‡РµС‚ РїСЂРѕРїСѓС‰РµРЅ."
 	End If
 	gProgressBar.ClassInfo = vbNullString
 End Sub
@@ -756,13 +756,13 @@ End Sub
 Private Sub fLogInit()	
 	gLogFilePath = gScriptPath & "\" & gLogFileName
 	gLogString = vbNullString
-	fLogLine "LOG", "Начало сессии."
+	fLogLine "LOG", "РќР°С‡Р°Р»Рѕ СЃРµСЃСЃРёРё."
 End Sub
 
 'fLogClose - close logfile
 Private Sub fLogClose()    
 	Dim tTextFile, tOldLogString	
-    fLogLine "LOG", "Конец сессии."
+    fLogLine "LOG", "РљРѕРЅРµС† СЃРµСЃСЃРёРё."
 	tOldLogString = vbNullString
     If gFSO.FileExists(gLogFilePath) Then
 		On Error Resume Next
@@ -853,11 +853,61 @@ Private Function fGetParamFromString(inParamString, inParam)
 	
 End Function
 
+Private Function fNameResolver_Period(inNameElements, inValue, inBlockSplitter, inInternalSplitter)
+	Dim tBlockValue, tBlockItem, tItemValue, tNameIndex, tNameType
+	Dim tMonth, tYear
+
+	' default values
+	fNameResolver_Period = vbNullString
+	tYear = 0
+	tMonth = 0
+
+	' BLOCK split
+	tBlockValue = inValue
+	If Not IsNull(tBlockValue) Then
+		tBlockValue = Split(tBlockValue, inBlockSplitter)
+
+		' BLOCK scan	
+		For Each tBlockItem In tBlockValue			
+			tItemValue = Split(tBlockItem, inInternalSplitter)				
+			
+			' inside item
+			If UBound(tItemValue) = 1 Then
+				tNameIndex = CInt(tItemValue(0))
+				tNameType = tItemValue(1)
+				
+				If UBound(inNameElements) >= tNameIndex Then
+					tItemValue = inNameElements(tNameIndex) 'extract data from filename by index
+					Select Case tNameType
+						Case "DATESTAMP":
+							fNameResolver_Period = DateSerial(Left(tItemValue, 4), Mid(tItemValue, 5, 2), Right(tItemValue, 2))
+							Exit Function
+
+						Case "YEAR":
+							If IsNumeric(tItemValue) Then: tYear = tItemValue
+
+						Case "MONTH_TEXT_RU":
+							tMonth = fMonthC2D(tItemValue)
+					End Select
+				End If
+			End If
+		Next
+	End If
+
+	'final
+	If Fix(tYear) <> 0 And Fix(tMonth) <> 0 Then: fNameResolver_Period = DateSerial(tYear, tMonth, 1)
+End Function
+
 ' inRSetNode = <file> node
 Private Sub fNameResolver(inRSetNode, inFileName, inParamString)
 	Dim tNameResolveNode, tNameSplitter, tNameElements, tTempValue, tNameIndex, tNameType
+	Dim tBlockSplitter, tInternalSplitter
 	
 	If inRSetNode Is Nothing Then: Exit Sub
+
+	' predefine splitters
+	tBlockSplitter = ";"
+	tInternalSplitter = ":"
 	
 	Set tNameResolveNode = inRSetNode.SelectSingleNode("child::filename/nameresolve")
 	
@@ -867,23 +917,13 @@ Private Sub fNameResolver(inRSetNode, inFileName, inParamString)
 		
 		'PERIOD Lock
 		tTempValue = tNameResolveNode.getAttribute("period")
-		If Not IsNull(tTempValue) Then
-			tTempValue = Split(tTempValue, ":")
-			If UBound(tTempValue) = 1 Then
-				tNameIndex = CInt(tTempValue(0))
-				tNameType = tTempValue(1)
-				
-				tTempValue = tNameElements(tNameIndex)
-				If tNameType = "DATESTAMP" Then
-					fAddParamToString inParamString, "PeriodDate", DateSerial(Left(tTempValue, 4), Mid(tTempValue, 5, 2), Right(tTempValue, 2))
-				End If
-			End If
-		End If
+		tTempValue = fNameResolver_Period(tNameElements, tTempValue, tBlockSplitter, tInternalSplitter)
+		If tTempValue <> vbNullString Then: fAddParamToString inParamString, "PeriodDate", tTempValue
 		
 		'TRADER Lock
 		tTempValue = tNameResolveNode.getAttribute("trader")
 		If Not IsNull(tTempValue) Then
-			tTempValue = Split(tTempValue, ":")
+			tTempValue = Split(tTempValue, tInternalSplitter)
 			If UBound(tTempValue) = 1 Then
 				tNameIndex = CInt(tTempValue(0))
 				tNameType = tTempValue(1)
@@ -898,7 +938,7 @@ Private Sub fNameResolver(inRSetNode, inFileName, inParamString)
 		'ZONE Lock
 		tTempValue = tNameResolveNode.getAttribute("zone")
 		If Not IsNull(tTempValue) Then
-			tTempValue = Split(tTempValue, ":")
+			tTempValue = Split(tTempValue, tInternalSplitter)
 			If UBound(tTempValue) = 1 Then
 				tNameIndex = CInt(tTempValue(0))
 				tNameType = tTempValue(1)
@@ -979,51 +1019,51 @@ Private Function fMonth2Cyr(inValue, inMode)
 	Select Case inValue
 		Case "1", 1:
 			If inMode = "N" Then
-				fMonth2Cyr = "январь"
+				fMonth2Cyr = "СЏРЅРІР°СЂСЊ"
 			End If
 		Case "2", 2:
 			If inMode = "N" Then
-				fMonth2Cyr = "февраль"
+				fMonth2Cyr = "С„РµРІСЂР°Р»СЊ"
 			End If
 		Case "3", 3:
 			If inMode = "N" Then
-				fMonth2Cyr = "март"
+				fMonth2Cyr = "РјР°СЂС‚"
 			End If
 		Case "4", 4:
 			If inMode = "N" Then
-				fMonth2Cyr = "апрель"
+				fMonth2Cyr = "Р°РїСЂРµР»СЊ"
 			End If
 		Case "5", 5:
 			If inMode = "N" Then
-				fMonth2Cyr = "май"
+				fMonth2Cyr = "РјР°Р№"
 			End If
 		Case "6", 6:
 			If inMode = "N" Then
-				fMonth2Cyr = "июнь"
+				fMonth2Cyr = "РёСЋРЅСЊ"
 			End If
 		Case "7", 7:
 			If inMode = "N" Then
-				fMonth2Cyr = "июль"
+				fMonth2Cyr = "РёСЋР»СЊ"
 			End If
 		Case "8", 8:
 			If inMode = "N" Then
-				fMonth2Cyr = "август"
+				fMonth2Cyr = "Р°РІРіСѓСЃС‚"
 			End If
 		Case "9", 9:
 			If inMode = "N" Then
-				fMonth2Cyr = "сентябрь"
+				fMonth2Cyr = "СЃРµРЅС‚СЏР±СЂСЊ"
 			End If
 		Case "10", 10:
 			If inMode = "N" Then
-				fMonth2Cyr = "октябрь"
+				fMonth2Cyr = "РѕРєС‚СЏР±СЂСЊ"
 			End If
 		Case "11", 11:
 			If inMode = "N" Then
-				fMonth2Cyr = "ноябрь"
+				fMonth2Cyr = "РЅРѕСЏР±СЂСЊ"
 			End If
 		Case "12", 12:
 			If inMode = "N" Then
-				fMonth2Cyr = "декабрь"
+				fMonth2Cyr = "РґРµРєР°Р±СЂСЊ"
 			End If
 	End Select
 End Function
@@ -1107,7 +1147,7 @@ Private Sub fFileDataCheck_EXCEL(inRSetNode, inFile, inParamString, outVersionLo
 	tXPathString = "ancestor::version/readingplanes/readingplan[@id='" & tReadingPlan & "']/sheet"
 	Set tReadingPlanSheetNodes = inRSetNode.SelectNodes(tXPathString)
 	If tReadingPlanSheetNodes.Length = 0 Then
-		fLogLine tLogTag, "Чтение невозможно! В текущем плане чтения нет листов с планом! XPath >> " & tXPathString
+		fLogLine tLogTag, "Р§С‚РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ! Р’ С‚РµРєСѓС‰РµРј РїР»Р°РЅРµ С‡С‚РµРЅРёСЏ РЅРµС‚ Р»РёСЃС‚РѕРІ СЃ РїР»Р°РЅРѕРј! XPath >> " & tXPathString
 		Exit Sub
 	End If
 	
@@ -1127,7 +1167,7 @@ Private Sub fFileDataCheck_EXCEL(inRSetNode, inFile, inParamString, outVersionLo
 		tCompareResult = True		
 		For Each tValidateFieldNode In tValidateFieldNodes
 			On Error Resume Next
-				'<validatefield row="1" col="1" static="1" comparemethod="consists">для начисления авансовых обязательств</validatefield>
+				'<validatefield row="1" col="1" static="1" comparemethod="consists">РґР»СЏ РЅР°С‡РёСЃР»РµРЅРёСЏ Р°РІР°РЅСЃРѕРІС‹С… РѕР±СЏР·Р°С‚РµР»СЊСЃС‚РІ</validatefield>
 				'<validatefield row="5" col="3" static="0" comparemethod="consists">#REPORTDATE_MONTH_N_2#.#REPORTDATE_YEAR_N_4#</validatefield>
 				
 				tRow = Fix(tValidateFieldNode.getAttribute("row"))
@@ -1220,14 +1260,14 @@ Private Function fValidateReportFile(inFile, inFileName, inFileExtension, inRSet
 	' 03 // ReadPlan check
 	tReadingPlan = inRSetNode.getAttribute("readingplan")
 	If IsNull(tReadingPlan) Then
-		fLogLine tLogTag, "Неверно заполнен конфиг RSet! Аттрибут @readingplan отсуствует в одном из файлов конфига отчета " & inRSetNode.SelectSingleNode("ancestor::report").getAttribute("name") & " версии " & inRSetNode.SelectSingleNode("ancestor::version").getAttribute("id")
+		fLogLine tLogTag, "РќРµРІРµСЂРЅРѕ Р·Р°РїРѕР»РЅРµРЅ РєРѕРЅС„РёРі RSet! РђС‚С‚СЂРёР±СѓС‚ @readingplan РѕС‚СЃСѓСЃС‚РІСѓРµС‚ РІ РѕРґРЅРѕРј РёР· С„Р°Р№Р»РѕРІ РєРѕРЅС„РёРіР° РѕС‚С‡РµС‚Р° " & inRSetNode.SelectSingleNode("ancestor::report").getAttribute("name") & " РІРµСЂСЃРёРё " & inRSetNode.SelectSingleNode("ancestor::version").getAttribute("id")
 		Exit Function
 	End If
 	
 	Set tReadingPlanNode = inRSetNode.SelectSingleNode("ancestor::version/readingplanes/readingplan[@id='" & tReadingPlan & "']")
 	
 	If tReadingPlanNode Is Nothing Then
-		fLogLine tLogTag, "Неверно заполнен конфиг RSet! План чтения <" & tReadingPlan & "> отсуствует в списке планов конфига отчета " & inRSetNode.SelectSingleNode("ancestor::report").getAttribute("name") & " версии " & inRSetNode.SelectSingleNode("ancestor::version").getAttribute("id")
+		fLogLine tLogTag, "РќРµРІРµСЂРЅРѕ Р·Р°РїРѕР»РЅРµРЅ РєРѕРЅС„РёРі RSet! РџР»Р°РЅ С‡С‚РµРЅРёСЏ <" & tReadingPlan & "> РѕС‚СЃСѓСЃС‚РІСѓРµС‚ РІ СЃРїРёСЃРєРµ РїР»Р°РЅРѕРІ РєРѕРЅС„РёРіР° РѕС‚С‡РµС‚Р° " & inRSetNode.SelectSingleNode("ancestor::report").getAttribute("name") & " РІРµСЂСЃРёРё " & inRSetNode.SelectSingleNode("ancestor::version").getAttribute("id")
 		Exit Function
 	End If	
 	
@@ -1298,7 +1338,7 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 	tIterationsCount = 0
 	
 	If inReportNode Is Nothing Or inReadingNode Is Nothing Then
-		fLogLine tLogTag, "Одна из необходимых входящий нод не задана! Is Nothing? [inReportNode = " & inReportNode Is Nothing &  "; inReadingNode = " & inReadingNode Is Nothing & "]"
+		fLogLine tLogTag, "РћРґРЅР° РёР· РЅРµРѕР±С…РѕРґРёРјС‹С… РІС…РѕРґСЏС‰РёР№ РЅРѕРґ РЅРµ Р·Р°РґР°РЅР°! Is Nothing? [inReportNode = " & inReportNode Is Nothing &  "; inReadingNode = " & inReadingNode Is Nothing & "]"
 		Exit Function
 	End If
 		
@@ -1309,7 +1349,7 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 	tEmptyItemLimit = inReadingNode.getAttribute("emptyitemlimit")
 	
 	If inReportNode.NodeName <> "records" Then
-		fLogLine tLogTag, "Нода записей (inReportNode) задана неверно. Ожидалась нода с именем <records>, а получена нода <" & inReportNode.NodeName & ">!"
+		fLogLine tLogTag, "РќРѕРґР° Р·Р°РїРёСЃРµР№ (inReportNode) Р·Р°РґР°РЅР° РЅРµРІРµСЂРЅРѕ. РћР¶РёРґР°Р»Р°СЃСЊ РЅРѕРґР° СЃ РёРјРµРЅРµРј <records>, Р° РїРѕР»СѓС‡РµРЅР° РЅРѕРґР° <" & inReportNode.NodeName & ">!"
 		Exit Function
 	End If
 	
@@ -1324,7 +1364,7 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 			tCurrentRow = 0
 			tCurrentCol = tDataStartIndex
 		Case Else:
-			fLogLine tLogTag, "Субметод (@submethod) чтения данных при методе SIMPLE не определен; должно быть ROWS или COLUMNS."
+			fLogLine tLogTag, "РЎСѓР±РјРµС‚РѕРґ (@submethod) С‡С‚РµРЅРёСЏ РґР°РЅРЅС‹С… РїСЂРё РјРµС‚РѕРґРµ SIMPLE РЅРµ РѕРїСЂРµРґРµР»РµРЅ; РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ ROWS РёР»Рё COLUMNS."
 			Exit Function
 	End Select
 	
@@ -1337,14 +1377,14 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 		Case "UP": tStep = 1
 		Case "DOWN": tStep = -1
 		Case Else:
-			fLogLine tLogTag, "Напраление (@direction) не определено; должно быть UP или DOWN."
+			fLogLine tLogTag, "РќР°РїСЂР°Р»РµРЅРёРµ (@direction) РЅРµ РѕРїСЂРµРґРµР»РµРЅРѕ; РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ UP РёР»Рё DOWN."
 			Exit Function
 	End Select
 	
 	'datatype node lock
 	Set tDataTypesNode = inReadingNode.ownerDocument.documentElement.SelectSingleNode("//datatypes")
 	If tDataTypesNode Is Nothing Then
-		fLogLine tLogTag, "Нода типов данных (tDataTypesNode) не определена в RSet."
+		fLogLine tLogTag, "РќРѕРґР° С‚РёРїРѕРІ РґР°РЅРЅС‹С… (tDataTypesNode) РЅРµ РѕРїСЂРµРґРµР»РµРЅР° РІ RSet."
 		Exit Function
 	End If
 	
@@ -1381,19 +1421,19 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 					Exit For
 				End If				
 				
-				'<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="МВт" description="Мощность"/>
+				'<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="РњР’С‚" description="РњРѕС‰РЅРѕСЃС‚СЊ"/>
 				'Set tCurrentDataTypeNode = tDataTypesNode.SelectSingleNode("child::datatype[@id='GTP_CODE')")
 				'WScript.Echo "NODE="
 				
 				Set tCurrentDataTypeNode = tDataTypesNode.SelectSingleNode("child::datatype[@id='" & tFieldDataType & "']")
 				If tCurrentDataTypeNode Is Nothing Then
-					'fLogLine tLogTag, "Ячейка " & uD2S(tFieldCol) & tFieldRow " листа " & inWorkSheet.Name & " имеет тип данных " & tFieldDataType & ", который не был прописан в списке типов данных RSet(//datatypes)."
-					fLogLine tLogTag, "XXX Поле чтения " & tFieldNodeName & " имеет тип данных " & tFieldDataType & ", который не был прописан в списке типов данных RSet(//datatypes)."
+					'fLogLine tLogTag, "РЇС‡РµР№РєР° " & uD2S(tFieldCol) & tFieldRow " Р»РёСЃС‚Р° " & inWorkSheet.Name & " РёРјРµРµС‚ С‚РёРї РґР°РЅРЅС‹С… " & tFieldDataType & ", РєРѕС‚РѕСЂС‹Р№ РЅРµ Р±С‹Р» РїСЂРѕРїРёСЃР°РЅ РІ СЃРїРёСЃРєРµ С‚РёРїРѕРІ РґР°РЅРЅС‹С… RSet(//datatypes)."
+					fLogLine tLogTag, "XXX РџРѕР»Рµ С‡С‚РµРЅРёСЏ " & tFieldNodeName & " РёРјРµРµС‚ С‚РёРї РґР°РЅРЅС‹С… " & tFieldDataType & ", РєРѕС‚РѕСЂС‹Р№ РЅРµ Р±С‹Р» РїСЂРѕРїРёСЃР°РЅ РІ СЃРїРёСЃРєРµ С‚РёРїРѕРІ РґР°РЅРЅС‹С… RSet(//datatypes)."
 					tRecordReaded = False
 					Exit Function
 				End If
 				
-				'WScript.Echo "Ячейка " & uD2S(tFieldCol) & tFieldRow & " листа " & inWorkSheet.Name & " имеет тип данных " & tFieldDataType
+				'WScript.Echo "РЇС‡РµР№РєР° " & uD2S(tFieldCol) & tFieldRow & " Р»РёСЃС‚Р° " & inWorkSheet.Name & " РёРјРµРµС‚ С‚РёРї РґР°РЅРЅС‹С… " & tFieldDataType
 				
 				'read value
 				tFieldValue = inWorkSheet.Cells(tFieldRow, tFieldCol).Value
@@ -1435,14 +1475,14 @@ Private Function fInjectData_EXCEL_SIMPLE(inReportNode, inWorkSheet, inReadingNo
 		Loop Until (tEmptyStreakCounter > tEmptyItemLimit) Or (tIterationsCount > tOverloadLimit)
 			
 		If tRecordsCount = 0 Then
-			fLogLine tLogTag, "Ошибка чтения! Записей не обнаружено!"
+			fLogLine tLogTag, "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ! Р—Р°РїРёСЃРµР№ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ!"
 			Exit Function
 		Else
-			fLogLine tLogTag, "Записей прочитано: " & tRecordsCount
+			fLogLine tLogTag, "Р—Р°РїРёСЃРµР№ РїСЂРѕС‡РёС‚Р°РЅРѕ: " & tRecordsCount
 		End If
 			
 		If tIterationsCount > tOverloadLimit Then
-			fLogLine tLogTag, "Ошибка чтения! Перегрузка по бесконечному циклу чтения записей! [" & tIterationsCount & "/" & tOverloadLimit & "]"
+			fLogLine tLogTag, "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ! РџРµСЂРµРіСЂСѓР·РєР° РїРѕ Р±РµСЃРєРѕРЅРµС‡РЅРѕРјСѓ С†РёРєР»Сѓ С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРµР№! [" & tIterationsCount & "/" & tOverloadLimit & "]"
 			Exit Function
 		End If
 		
@@ -1458,8 +1498,8 @@ Private Function fCheckValueByTypeNode(inValue, inTypeNode)
 	
 	tFieldDataType = inTypeNode.getAttribute("data")
 	
-	'<datatype id="GTP_CODE" data="STRING" minlen="8" maxlen="8" description="Код ГТП"/>
-	'<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="МВт" description="Мощность"/>
+	'<datatype id="GTP_CODE" data="STRING" minlen="8" maxlen="8" description="РљРѕРґ Р“РўРџ"/>
+	'<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="РњР’С‚" description="РњРѕС‰РЅРѕСЃС‚СЊ"/>
 	
 	Select Case tFieldDataType
 		Case "NUMERIC": 
@@ -1505,7 +1545,7 @@ Private Function fInjectReportRecords_EXCEL(inReportNode, inFile, inRSetNode, in
 	tReadingPlan = fGetParamFromString(inParamString, "ReadingPlan")
 	Set tReadingPlanSheetNodes = inRSetNode.SelectNodes("ancestor::version/child::readingplanes/readingplan[@id='" & tReadingPlan & "']/sheet")
 	If tReadingPlanSheetNodes.Length = 0 Then
-		fLogLine tLogTag, "Прерывание чтения! Листов в плане чтения конфига RSet не обнаружено."
+		fLogLine tLogTag, "РџСЂРµСЂС‹РІР°РЅРёРµ С‡С‚РµРЅРёСЏ! Р›РёСЃС‚РѕРІ РІ РїР»Р°РЅРµ С‡С‚РµРЅРёСЏ РєРѕРЅС„РёРіР° RSet РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ."
 		Exit Function
 	End If
 	
@@ -1556,7 +1596,7 @@ Private Function fReportInject(inFile, inRSetNode, inNumber, inParamString)
 	tReportVersion = fGetParamFromString(inParamString, "VersionID")	
 	
 	If Not tReportVersion > 0 Then
-		fLogLine tLogTag, "Версия отчета " & tReportVersion & " не сущетсвует."
+		fLogLine tLogTag, "Р’РµСЂСЃРёСЏ РѕС‚С‡РµС‚Р° " & tReportVersion & " РЅРµ СЃСѓС‰РµС‚СЃРІСѓРµС‚."
 		Exit Function
 	End If
 	
@@ -1564,14 +1604,14 @@ Private Function fReportInject(inFile, inRSetNode, inNumber, inParamString)
 		Case "EXCEL": fFileDataCheck_EXCEL inRSetNode, inFile, inParamString, tVersionLock
 		Case "XML": fFileDataCheck_XML inRSetNode, inFile, inParamString, tVersionLock
 		Case Else: 
-			fLogLine tLogTag, "(Этап проверки полей) Метод чтения был неожиданным - " & tReadMethod & "."
+			fLogLine tLogTag, "(Р­С‚Р°Рї РїСЂРѕРІРµСЂРєРё РїРѕР»РµР№) РњРµС‚РѕРґ С‡С‚РµРЅРёСЏ Р±С‹Р» РЅРµРѕР¶РёРґР°РЅРЅС‹Рј - " & tReadMethod & "."
 			Exit Function
 	End Select
 	
-	fLogLine tLogTag, "Результат проверки файла отчета версии " & tReportVersion & " по соответствию - " & tVersionLock & "."
+	fLogLine tLogTag, "Р РµР·СѓР»СЊС‚Р°С‚ РїСЂРѕРІРµСЂРєРё С„Р°Р№Р»Р° РѕС‚С‡РµС‚Р° РІРµСЂСЃРёРё " & tReportVersion & " РїРѕ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЋ - " & tVersionLock & "."
 	If Not tVersionLock Then: Exit Function
 	
-	' 03 // Проверка пройдена, значит можно читать данные отчета
+	' 03 // РџСЂРѕРІРµСЂРєР° РїСЂРѕР№РґРµРЅР°, Р·РЅР°С‡РёС‚ РјРѕР¶РЅРѕ С‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РѕС‚С‡РµС‚Р°
 	tTraderCode = fGetParamFromString(inParamString, "TraderCode")
 	tReportCode = fGetParamFromString(inParamString, "ReportCode")
 	tYear = fGetParamFromString(inParamString, "PeriodYear")
@@ -1581,28 +1621,28 @@ Private Function fReportInject(inFile, inRSetNode, inNumber, inParamString)
 	tFileID = fGetParamFromString(inParamString, "FileID")
 	tReadingPlan = fGetParamFromString(inParamString, "ReadingPlan")
 	
-	' 04 // Создание предварительной структуры ноды отчета в БД (RData)
+	' 04 // РЎРѕР·РґР°РЅРёРµ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕР№ СЃС‚СЂСѓРєС‚СѓСЂС‹ РЅРѕРґС‹ РѕС‚С‡РµС‚Р° РІ Р‘Р” (RData)
 	Set tReportNode = fInjectReportStructure(gRDataXML, inFile, tReportCode, tTraderCode, tYear, tMonth, tDay, tZoneID, tFileID, inNumber, tReportVersion, tReadingPlan, "")
 	If tReportNode Is Nothing Then
-		fLogLine tLogTag, "Предварительная структура ноды отчета не была создана!"
+		fLogLine tLogTag, "РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅР°СЏ СЃС‚СЂСѓРєС‚СѓСЂР° РЅРѕРґС‹ РѕС‚С‡РµС‚Р° РЅРµ Р±С‹Р»Р° СЃРѕР·РґР°РЅР°!"
 		Exit Function
 	End If
 		
-	' 05 // Чтение данных отчета и перенос их в XML ноду БД отчета (tReportNode)
+	' 05 // Р§С‚РµРЅРёРµ РґР°РЅРЅС‹С… РѕС‚С‡РµС‚Р° Рё РїРµСЂРµРЅРѕСЃ РёС… РІ XML РЅРѕРґСѓ Р‘Р” РѕС‚С‡РµС‚Р° (tReportNode)
 	Select Case tReadMethod
 		Case "EXCEL": tIsDataInjected = fInjectReportRecords_EXCEL(tReportNode, inFile, inRSetNode, inParamString)
 		Case "XML": tIsDataInjected = fInjectReportRecords_XML(tReportNode, inFile, inRSetNode, inParamString)
 		Case Else: 
-			fLogLine tLogTag, "(Этап чтения записей) Метод чтения был неожиданным - " & tReadMethod & "."
+			fLogLine tLogTag, "(Р­С‚Р°Рї С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРµР№) РњРµС‚РѕРґ С‡С‚РµРЅРёСЏ Р±С‹Р» РЅРµРѕР¶РёРґР°РЅРЅС‹Рј - " & tReadMethod & "."
 			Exit Function
 	End Select
 	
-	If Not tIsDataInjected Then: fLogLine tLogTag, "(Этап чтения записей) При чтении данных возникли проблемы."
+	If Not tIsDataInjected Then: fLogLine tLogTag, "(Р­С‚Р°Рї С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРµР№) РџСЂРё С‡С‚РµРЅРёРё РґР°РЅРЅС‹С… РІРѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹."
 	
 	fReportInject = tIsDataInjected
 End Function
 
-' Попытка инъекции отчета
+' РџРѕРїС‹С‚РєР° РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р°
 Private Function fReportInjector(inFile, inRSetNode, inParamString)
 	Dim tLogTag, tXPathString, tYear, tMonth, tDay, tPeriodDate, tTargetPeriod, tTraderCode, tReportCode, tZoneID, tFileID, tNodeCount
 	Dim tUpdateTrigger, tNode, tInjectTrigger, tReplaceTrigger, tModifyDate, tNumber, tDateDiffResult, tIsInjected, tReadingPlan, tString
@@ -1639,14 +1679,14 @@ Private Function fReportInjector(inFile, inRSetNode, inParamString)
 	tZoneID = fGetParamFromString(inParamString, "ZoneID")
 	tFileID = fGetParamFromString(inParamString, "FileID")
 	tReadingPlan = fGetParamFromString(inParamString, "ReadingPlan")
-	gProgressBar.ClassInfo = "Отчет: " & tReportCode
+	gProgressBar.ClassInfo = "РћС‚С‡РµС‚: " & tReportCode
 	
 	tXPathString = "//rtype[@reportcode='" & tReportCode & "']/trader[@tradercode='" & tTraderCode & "']/report[@year='" & tYear & "' and @month='" & tMonth & "' and @day='" & tDay & "' and @zone='" & tZoneID & "' and @file='" & tFileID & "']"
 	
-	fLogLine tLogTag, "СТАРТ. Файл <" & inFile.Name & "> опознан как отчет " & tReportCode & "."
-	tString = "Инициирована проверка отчета " & tReportCode & " (файл " & tFileID & ") для торговца " & tTraderCode & " (периодичность - " & tTargetPeriod & ") на период " & tYear & tMonth & tDay & "; "
-	If tZoneID <> vbNullString Then: tString = tString & "зона - " & tZoneID & "; "
-	tString = tString & "план чтения - " & tReadingPlan & "."
+	fLogLine tLogTag, "РЎРўРђР Рў. Р¤Р°Р№Р» <" & inFile.Name & "> РѕРїРѕР·РЅР°РЅ РєР°Рє РѕС‚С‡РµС‚ " & tReportCode & "."
+	tString = "РРЅРёС†РёРёСЂРѕРІР°РЅР° РїСЂРѕРІРµСЂРєР° РѕС‚С‡РµС‚Р° " & tReportCode & " (С„Р°Р№Р» " & tFileID & ") РґР»СЏ С‚РѕСЂРіРѕРІС†Р° " & tTraderCode & " (РїРµСЂРёРѕРґРёС‡РЅРѕСЃС‚СЊ - " & tTargetPeriod & ") РЅР° РїРµСЂРёРѕРґ " & tYear & tMonth & tDay & "; "
+	If tZoneID <> vbNullString Then: tString = tString & "Р·РѕРЅР° - " & tZoneID & "; "
+	tString = tString & "РїР»Р°РЅ С‡С‚РµРЅРёСЏ - " & tReadingPlan & "."
 	fLogLine tLogTag, tString
 	
 	' 03 // Scan for existed nodes (with autofix of anomaly)
@@ -1661,11 +1701,11 @@ Private Function fReportInjector(inFile, inRSetNode, inParamString)
 	tInjectTrigger = False
 	Set tNode = gRDataXML.SelectSingleNode(tXPathString & "/source/modify")
 	
-	' 05 // Если записей отчета нет, то выносим решение о необходимости создания записи
+	' 05 // Р•СЃР»Рё Р·Р°РїРёСЃРµР№ РѕС‚С‡РµС‚Р° РЅРµС‚, С‚Рѕ РІС‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё СЃРѕР·РґР°РЅРёСЏ Р·Р°РїРёСЃРё
 	If tNode Is Nothing Then
 		tInjectTrigger = True
-		fLogLine tLogTag, "Записей не обнаружено, будет произведена попытка инъекции данного отчета."
-	' 06 // Если запись есть, то необходимо сверить дату записи и дату нового отчета (если новый отчет "новее", то стираем старую запись, и выносим решение о необходимости создания новой записи)
+		fLogLine tLogTag, "Р—Р°РїРёСЃРµР№ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅРѕ, Р±СѓРґРµС‚ РїСЂРѕРёР·РІРµРґРµРЅР° РїРѕРїС‹С‚РєР° РёРЅСЉРµРєС†РёРё РґР°РЅРЅРѕРіРѕ РѕС‚С‡РµС‚Р°."
+	' 06 // Р•СЃР»Рё Р·Р°РїРёСЃСЊ РµСЃС‚СЊ, С‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ СЃРІРµСЂРёС‚СЊ РґР°С‚Сѓ Р·Р°РїРёСЃРё Рё РґР°С‚Сѓ РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° (РµСЃР»Рё РЅРѕРІС‹Р№ РѕС‚С‡РµС‚ "РЅРѕРІРµРµ", С‚Рѕ СЃС‚РёСЂР°РµРј СЃС‚Р°СЂСѓСЋ Р·Р°РїРёСЃСЊ, Рё РІС‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕР№ Р·Р°РїРёСЃРё)
 	Else
 		tReplaceTrigger = True
 		tModifyDate = tNode.Text
@@ -1674,13 +1714,13 @@ Private Function fReportInjector(inFile, inRSetNode, inParamString)
 			tModifyDate = CDate(tModifyDate)
 			tDateDiffResult = DateDiff("s", tModifyDate, inFile.DateLastModified)
 			If tDateDiffResult = 0 Then
-				fLogLine tLogTag, "Обнаруженный отчет уже загружен. Новый: <" & inFile.DateLastModified & "> Текущий: <" & tModifyDate & ">"
+				fLogLine tLogTag, "РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Р№ РѕС‚С‡РµС‚ СѓР¶Рµ Р·Р°РіСЂСѓР¶РµРЅ. РќРѕРІС‹Р№: <" & inFile.DateLastModified & "> РўРµРєСѓС‰РёР№: <" & tModifyDate & ">"
 			Else
-				fLogLine tLogTag, "Обнаруженный отчет новее на " & tDateDiffResult & " сек. Новый: <" & inFile.DateLastModified & "> Текущий: <" & tModifyDate & ">"
+				fLogLine tLogTag, "РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Р№ РѕС‚С‡РµС‚ РЅРѕРІРµРµ РЅР° " & tDateDiffResult & " СЃРµРє. РќРѕРІС‹Р№: <" & inFile.DateLastModified & "> РўРµРєСѓС‰РёР№: <" & tModifyDate & ">"
 			End If
 			If tDateDiffResult <= 0 Then: tReplaceTrigger = False 'new report has older or equal timestamp
 		Else
-			fLogLine tLogTag, "Обнаруженный отчет содержит неверные данные (не дата) в блоке REPORT/SOURCE/MODIFY."
+			fLogLine tLogTag, "РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Р№ РѕС‚С‡РµС‚ СЃРѕРґРµСЂР¶РёС‚ РЅРµРІРµСЂРЅС‹Рµ РґР°РЅРЅС‹Рµ (РЅРµ РґР°С‚Р°) РІ Р±Р»РѕРєРµ REPORT/SOURCE/MODIFY."
 		End If
 		
 		'Delete old report
@@ -1695,32 +1735,32 @@ Private Function fReportInjector(inFile, inRSetNode, inParamString)
 				tNumber = 0
 			End If				
 			tNode.ParentNode.RemoveChild(tNode)
-			fLogLine tLogTag, "Удаление более старой записи отчета (номер отчета - " & tNumber & ")."
+			fLogLine tLogTag, "РЈРґР°Р»РµРЅРёРµ Р±РѕР»РµРµ СЃС‚Р°СЂРѕР№ Р·Р°РїРёСЃРё РѕС‚С‡РµС‚Р° (РЅРѕРјРµСЂ РѕС‚С‡РµС‚Р° - " & tNumber & ")."
 		End If
 	End If
 	
-	' 07 // О необходимости инъекции текущего отчета в БД (RData)
-	fLogLine tLogTag, "Решение о необходимости новой инъекции отчета - " & tInjectTrigger & "."
+	' 07 // Рћ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РёРЅСЉРµРєС†РёРё С‚РµРєСѓС‰РµРіРѕ РѕС‚С‡РµС‚Р° РІ Р‘Р” (RData)
+	fLogLine tLogTag, "Р РµС€РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РЅРѕРІРѕР№ РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р° - " & tInjectTrigger & "."
 	If tInjectTrigger Then 
-	' 08 // При ПОЛОЖИТЕЛЬНОМ решении вызываем необходимый обработчик отчета		
+	' 08 // РџСЂРё РџРћР›РћР–РРўР•Р›Р¬РќРћРњ СЂРµС€РµРЅРёРё РІС‹Р·С‹РІР°РµРј РЅРµРѕР±С…РѕРґРёРјС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє РѕС‚С‡РµС‚Р°		
 		tNumber = tNumber + 1	'Set report number
-		fLogLine tLogTag, "Номер отчета для новой инъекции - " & tNumber & "."
+		fLogLine tLogTag, "РќРѕРјРµСЂ РѕС‚С‡РµС‚Р° РґР»СЏ РЅРѕРІРѕР№ РёРЅСЉРµРєС†РёРё - " & tNumber & "."
 		
 		tIsInjected = fReportInject(inFile, inRSetNode, tNumber, inParamString)
 		
-	' 10 // Выносим решение о сохранении изменений в XML RData 
-		fLogLine tLogTag, "Готовность инъекции отчета к сохранению - " & tIsInjected & "."
+	' 10 // Р’С‹РЅРѕСЃРёРј СЂРµС€РµРЅРёРµ Рѕ СЃРѕС…СЂР°РЅРµРЅРёРё РёР·РјРµРЅРµРЅРёР№ РІ XML RData 
+		fLogLine tLogTag, "Р“РѕС‚РѕРІРЅРѕСЃС‚СЊ РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р° Рє СЃРѕС…СЂР°РЅРµРЅРёСЋ - " & tIsInjected & "."
 		If tIsInjected Then			
-	' 11 // Если ошибок не произошло, то сохраняем изменения
-			fLogLine tLogTag, "КОНЕЦ. Сохранение изменений RData XML."
+	' 11 // Р•СЃР»Рё РѕС€РёР±РѕРє РЅРµ РїСЂРѕРёР·РѕС€Р»Рѕ, С‚Рѕ СЃРѕС…СЂР°РЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
+			fLogLine tLogTag, "РљРћРќР•Р¦. РЎРѕС…СЂР°РЅРµРЅРёРµ РёР·РјРµРЅРµРЅРёР№ RData XML."
 			fSaveXMLRDataChanges gXMLRDataPath, gRDataXML			
 		Else
-	' 12 // Если были ошибки чтения нового отчета из источника, то отменяем любые внесенные изменения обработчиками отчетов выше
-			fLogLine tLogTag, "КОНЕЦ. Откат изменений RData XML."
+	' 12 // Р•СЃР»Рё Р±С‹Р»Рё РѕС€РёР±РєРё С‡С‚РµРЅРёСЏ РЅРѕРІРѕРіРѕ РѕС‚С‡РµС‚Р° РёР· РёСЃС‚РѕС‡РЅРёРєР°, С‚Рѕ РѕС‚РјРµРЅСЏРµРј Р»СЋР±С‹Рµ РІРЅРµСЃРµРЅРЅС‹Рµ РёР·РјРµРЅРµРЅРёСЏ РѕР±СЂР°Р±РѕС‚С‡РёРєР°РјРё РѕС‚С‡РµС‚РѕРІ РІС‹С€Рµ
+			fLogLine tLogTag, "РљРћРќР•Р¦. РћС‚РєР°С‚ РёР·РјРµРЅРµРЅРёР№ RData XML."
 			fReloadXMLObject gXMLRDataPath, gRDataXML
 		End If
 	Else
-		fLogLine tLogTag, "КОНЕЦ. Отчет пропущен."
+		fLogLine tLogTag, "РљРћРќР•Р¦. РћС‚С‡РµС‚ РїСЂРѕРїСѓС‰РµРЅ."
 	End If
 	
 	gProgressBar.ClassInfo = vbNullString
@@ -1736,34 +1776,36 @@ Private Sub fFileRecognize(inFile, inTraderCode)
 	tZone = vbNullString
 	tModel = 0
 	
-	' 02 // Перебор доступных масок имен файлов отчетов для входного файла
+	' 02 // РџРµСЂРµР±РѕСЂ РґРѕСЃС‚СѓРїРЅС‹С… РјР°СЃРѕРє РёРјРµРЅ С„Р°Р№Р»РѕРІ РѕС‚С‡РµС‚РѕРІ РґР»СЏ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 	tReportLocked = False
 	Set tRSetNode = Nothing
 	
 	tFileExtension = fGetFileExtension(inFile.Name)
 	tFileName = fGetFileName(inFile.Name)
 
-	' tNodes - хранит все ноды с масками
+	' tNodes - С…СЂР°РЅРёС‚ РІСЃРµ РЅРѕРґС‹ СЃ РјР°СЃРєР°РјРё
 	Set tNodes = gRSetXML.SelectNodes("//report/version[@enabled='1']/descendant::filename/mask")
 	
-	' Перебор нод из tNodes и сравнение их значений через RExp именем файла
+	' РџРµСЂРµР±РѕСЂ РЅРѕРґ РёР· tNodes Рё СЃСЂР°РІРЅРµРЅРёРµ РёС… Р·РЅР°С‡РµРЅРёР№ С‡РµСЂРµР· RExp РёРјРµРЅРµРј С„Р°Р№Р»Р°
 	For Each tNode In tNodes
 
-		' Преробразуем общие части маски под необходимые
+		' РџСЂРµСЂРѕР±СЂР°Р·СѓРµРј РѕР±С‰РёРµ С‡Р°СЃС‚Рё РјР°СЃРєРё РїРѕРґ РЅРµРѕР±С…РѕРґРёРјС‹Рµ
 		gRExp.Pattern = fReprocessMask(tNode.Text, inTraderCode)
+		'fLogLine "RECOGNIZER", "gRExp.Pattern > " & gRExp.Pattern
 		
-		' A1 // Маска совпала?
+		' A1 // РњР°СЃРєР° СЃРѕРІРїР°Р»Р°?
 		If gRExp.Test(tFileName) Then
 			tReportLocked = True
-			Set tRSetNode = tNode.SelectSingleNode("ancestor::file") 'перейдем к прародителю <file> ноды <mask>
+			Set tRSetNode = tNode.SelectSingleNode("ancestor::file") 'РїРµСЂРµР№РґРµРј Рє РїСЂР°СЂРѕРґРёС‚РµР»СЋ <file> РЅРѕРґС‹ <mask>
+			'fLogLine "RECOGNIZER", "LOCK > " & gRExp.Pattern
 		
-			' A2 // Проверка файла на соответствие по внешним признакам (имя и расширение) tParamString - своего рода контекст сопровождения
+			' A2 // РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РїРѕ РІРЅРµС€РЅРёРј РїСЂРёР·РЅР°РєР°Рј (РёРјСЏ Рё СЂР°СЃС€РёСЂРµРЅРёРµ) tParamString - СЃРІРѕРµРіРѕ СЂРѕРґР° РєРѕРЅС‚РµРєСЃС‚ СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёСЏ
 			If fValidateReportFile(inFile, tFileName, tFileExtension, tRSetNode, tParamString) Then
 
-				' Если удалось пройти проверку на правильность отчета - то можем присвоить строке-структуре сопровождения PARAM код отчета
+				' Р•СЃР»Рё СѓРґР°Р»РѕСЃСЊ РїСЂРѕР№С‚Рё РїСЂРѕРІРµСЂРєСѓ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РѕС‚С‡РµС‚Р° - С‚Рѕ РјРѕР¶РµРј РїСЂРёСЃРІРѕРёС‚СЊ СЃС‚СЂРѕРєРµ-СЃС‚СЂСѓРєС‚СѓСЂРµ СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёСЏ PARAM РєРѕРґ РѕС‚С‡РµС‚Р°
 				fAddParamToString tParamString, "ReportCode", tRSetNode.SelectSingleNode("ancestor::report").getAttribute("name")
 				
-				' A3 // Попытка инъекции отчета
+				' A3 // РџРѕРїС‹С‚РєР° РёРЅСЉРµРєС†РёРё РѕС‚С‡РµС‚Р°
 				If fReportInjector(inFile, tRSetNode, tParamString) Then
 				End If
 
@@ -1777,7 +1819,7 @@ Private Sub fFileRecognize(inFile, inTraderCode)
 
 End Sub
 
-'--------  КЛАСС clsExplorerProgressBar ---- v1.EXT ------------------------------
+'--------  РљР›РђРЎРЎ clsExplorerProgressBar ---- v1.EXT ------------------------------
 Class clsExplorerProgressBar
     Private tExplorer, tBackCol, tTextCol, tProgressCol, tMaxProgress, tCurrentProgress, tProgressItemWidth, tCaption, tTitle, tProgressItem, iProg, tStep, tMaxSteps, tClassInfo
 	
@@ -1794,16 +1836,16 @@ Class clsExplorerProgressBar
             .Height = 170
             .Resizable = False
         End With		
-        tBackCol = "E0E0E4"              'цвет фона по умолчанию
-        tTextCol = "000000"              'цвет текста надписи по умолчанию
-        tProgressCol = "0000A0"           'цвет индикатора прогресса по умолчанию
+        tBackCol = "E0E0E4"              'С†РІРµС‚ С„РѕРЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        tTextCol = "000000"              'С†РІРµС‚ С‚РµРєСЃС‚Р° РЅР°РґРїРёСЃРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        tProgressCol = "0000A0"           'С†РІРµС‚ РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 		tProgressItemWidth = 12
-        tMaxProgress = Fix(tExplorer.Width / tProgressItemWidth)                 'количество единиц индикатора прогресса по умолчанию		
-        tCaption = "Подождите..." 'надпись по умолчанию
+        tMaxProgress = Fix(tExplorer.Width / tProgressItemWidth)                 'РєРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ		
+        tCaption = "РџРѕРґРѕР¶РґРёС‚Рµ..." 'РЅР°РґРїРёСЃСЊ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 		tClassInfo = "ClassInfo"
-        tTitle = "Ожидание"       'заголовок окна по умолчанию
-        tProgressItem = Chr(34) 'двойная кавычка (для HTML-вёрстки)
-        tCurrentProgress = 0                    'заполнение индикатора прогресса
+        tTitle = "РћР¶РёРґР°РЅРёРµ"       'Р·Р°РіРѕР»РѕРІРѕРє РѕРєРЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        tProgressItem = Chr(34) 'РґРІРѕР№РЅР°СЏ РєР°РІС‹С‡РєР° (РґР»СЏ HTML-РІС‘СЂСЃС‚РєРё)
+        tCurrentProgress = 0                    'Р·Р°РїРѕР»РЅРµРЅРёРµ РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР°
 		tMaxSteps = tMaxProgress
 		tStep = tCurrentProgress		
     End Sub
@@ -1818,31 +1860,31 @@ Class clsExplorerProgressBar
     Public Sub Show()        
 		Dim tHTMLString, tIndex
         On Error Resume Next
-		'заголовок
+		'Р·Р°РіРѕР»РѕРІРѕРє
         tHTMLString = "<HTML><HEAD><TITLE>" & tTitle & "</TITLE></HEAD>" 
-		'тело
+		'С‚РµР»Рѕ
         tHTMLString = tHTMLString & "<BODY SCROLL=" & tProgressItem & "NO" & tProgressItem & " BGCOLOR=" & tProgressItem & "#" & tBackCol & tProgressItem & " TEXT=" & tProgressItem & "#" & tTextCol & tProgressItem & ">"
-		'текстовая часть прогресса CAPTION
+		'С‚РµРєСЃС‚РѕРІР°СЏ С‡Р°СЃС‚СЊ РїСЂРѕРіСЂРµСЃСЃР° CAPTION
         If (tCaption <> "") Then 
             tHTMLString = tHTMLString & "<FONT FACE=" & tProgressItem & "arial" & tProgressItem & " SIZE=2><LABEL ID=" & tProgressItem & "Cap1" & tProgressItem & ">" & tCaption & "</LABEL></FONT><BR><BR>"
         Else
             tHTMLString = tHTMLString & "<BR>"
         End If
-		'текстовая часть прогресса CLASS INFO
+		'С‚РµРєСЃС‚РѕРІР°СЏ С‡Р°СЃС‚СЊ РїСЂРѕРіСЂРµСЃСЃР° CLASS INFO
         If (tClassInfo <> "") Then 
             tHTMLString = tHTMLString & "<FONT FACE=" & tProgressItem & "arial" & tProgressItem & " SIZE=2><LABEL ID=" & tProgressItem & "ClsInfo" & tProgressItem & ">" & tClassInfo & "</LABEL></FONT><BR><BR>"
         'Else
         '    tHTMLString = tHTMLString & "<BR>"
         End If	
-		'табличная часть
+		'С‚Р°Р±Р»РёС‡РЅР°СЏ С‡Р°СЃС‚СЊ
         tHTMLString = tHTMLString & "<TABLE BORDER=1><TR><TD><TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0><TR>"
-		'табличная часть заполняется
+		'С‚Р°Р±Р»РёС‡РЅР°СЏ С‡Р°СЃС‚СЊ Р·Р°РїРѕР»РЅСЏРµС‚СЃСЏ
         For tIndex = 1 to tMaxProgress
             tHTMLString = tHTMLString & "<TD WIDTH=16 HEIGHT=16 ID=" & tProgressItem & "P" & tProgressItem & ">"
         Next
-		'закрытие тэгов и завершение
+		'Р·Р°РєСЂС‹С‚РёРµ С‚СЌРіРѕРІ Рё Р·Р°РІРµСЂС€РµРЅРёРµ
         tHTMLString = tHTMLString & "</TR></TABLE></TD></TR></TABLE><BR><BR></BODY></HTML>" 
-		'перенос кода в браузер и его активация
+		'РїРµСЂРµРЅРѕСЃ РєРѕРґР° РІ Р±СЂР°СѓР·РµСЂ Рё РµРіРѕ Р°РєС‚РёРІР°С†РёСЏ
 		With tExplorer
 			.Navigate2 "about:blank"
 			.Document.Write tHTMLString
@@ -1850,10 +1892,10 @@ Class clsExplorerProgressBar
 		End With
     End Sub
    
-    'Метод Advance раскрашивает одну ячейку индикатора прогресса.
-    'Переменная iProg отслеживает, сколько ячеек было раскрашено.
-    'Каждая ячейка индикатора прогресса является тегом <TD> с идентификатором ID="P".
-    'К этим тегам можно обратиться через Document.All.Item.
+    'РњРµС‚РѕРґ Advance СЂР°СЃРєСЂР°С€РёРІР°РµС‚ РѕРґРЅСѓ СЏС‡РµР№РєСѓ РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР°.
+    'РџРµСЂРµРјРµРЅРЅР°СЏ iProg РѕС‚СЃР»РµР¶РёРІР°РµС‚, СЃРєРѕР»СЊРєРѕ СЏС‡РµРµРє Р±С‹Р»Рѕ СЂР°СЃРєСЂР°С€РµРЅРѕ.
+    'РљР°Р¶РґР°СЏ СЏС‡РµР№РєР° РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР° СЏРІР»СЏРµС‚СЃСЏ С‚РµРіРѕРј <TD> СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј ID="P".
+    'Рљ СЌС‚РёРј С‚РµРіР°Рј РјРѕР¶РЅРѕ РѕР±СЂР°С‚РёС‚СЊСЃСЏ С‡РµСЂРµР· Document.All.Item.
     Public Sub Advance()
 	Dim tPrevProgress, tNewProgress, tIndex
         On Error Resume Next
@@ -1870,7 +1912,7 @@ Class clsExplorerProgressBar
         End If   
     End Sub
 
-    'Изменение размеров и/или позиции окна. Используйте -1 для любого параметра, который вы не хотите менять.
+    'РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ Рё/РёР»Рё РїРѕР·РёС†РёРё РѕРєРЅР°. РСЃРїРѕР»СЊР·СѓР№С‚Рµ -1 РґР»СЏ Р»СЋР±РѕРіРѕ РїР°СЂР°РјРµС‚СЂР°, РєРѕС‚РѕСЂС‹Р№ РІС‹ РЅРµ С…РѕС‚РёС‚Рµ РјРµРЅСЏС‚СЊ.
     Public Sub Move(inPinX, inPinY, inWidth, inHeight)
         On Error Resume Next
 		With tExplorer
@@ -1881,8 +1923,8 @@ Class clsExplorerProgressBar
 		End With
     End Sub
 
-    'Удаление параметров настройки реестра, отвечающих за заголовок IE.
-    'Это изменение не будет иметь эффекта при первом использовании, поскольку экземпляр IE уже был создан перед вызовом метода.
+    'РЈРґР°Р»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РЅР°СЃС‚СЂРѕР№РєРё СЂРµРµСЃС‚СЂР°, РѕС‚РІРµС‡Р°СЋС‰РёС… Р·Р° Р·Р°РіРѕР»РѕРІРѕРє IE.
+    'Р­С‚Рѕ РёР·РјРµРЅРµРЅРёРµ РЅРµ Р±СѓРґРµС‚ РёРјРµС‚СЊ СЌС„С„РµРєС‚Р° РїСЂРё РїРµСЂРІРѕРј РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё, РїРѕСЃРєРѕР»СЊРєСѓ СЌРєР·РµРјРїР»СЏСЂ IE СѓР¶Рµ Р±С‹Р» СЃРѕР·РґР°РЅ РїРµСЂРµРґ РІС‹Р·РѕРІРѕРј РјРµС‚РѕРґР°.
     Public Sub CleanIETitle()
         Dim sR1, sR2, SH
         On Error Resume Next
@@ -1894,31 +1936,31 @@ Class clsExplorerProgressBar
         Set SH = Nothing
     End Sub
 
-    '------------- Установка цвета фона: ---------------------
+    '------------- РЈСЃС‚Р°РЅРѕРІРєР° С†РІРµС‚Р° С„РѕРЅР°: ---------------------
 
     Public Property Let BackColor(inCol)
         If fTestColor(inCol) Then: tBackCol = inCol
     End Property
  
-    '------------- Установка цвета текста: --------------------
+    '------------- РЈСЃС‚Р°РЅРѕРІРєР° С†РІРµС‚Р° С‚РµРєСЃС‚Р°: --------------------
 
     Public Property Let TextColor(inCol)
         If fTestColor(inCol) Then: tTextCol = inCol
     End Property
  
-    '------------- Установка цвета индикатора прогресса: ------
+    '------------- РЈСЃС‚Р°РЅРѕРІРєР° С†РІРµС‚Р° РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР°: ------
 
     Public Property Let ProgressColor(inCol)
         If fTestColor(inCol)Then: tProgressCol = inCol
     End Property
 
-    '------------- Установка заголовкеа окна: ------------------
+    '------------- РЈСЃС‚Р°РЅРѕРІРєР° Р·Р°РіРѕР»РѕРІРєРµР° РѕРєРЅР°: ------------------
 
     Public Property Let Title(inText)
         tTitle = inText
     End Property
  
-    '------------- Установка текста: ----------------------------
+    '------------- РЈСЃС‚Р°РЅРѕРІРєР° С‚РµРєСЃС‚Р°: ----------------------------
 
     Public Property Let Caption(inText)
         On Error Resume Next
@@ -1932,15 +1974,15 @@ Class clsExplorerProgressBar
         tExplorer.Document.ParentWindow.ClsInfo.InnerText = inText
     End Property
 
-    '----- Установка количества единиц индикатора прогресса: -----
+    '----- РЈСЃС‚Р°РЅРѕРІРєР° РєРѕР»РёС‡РµСЃС‚РІР° РµРґРёРЅРёС† РёРЅРґРёРєР°С‚РѕСЂР° РїСЂРѕРіСЂРµСЃСЃР°: -----
 
     Public Property Let Units(inMaxSteps)
 		tStep = 0
         tMaxSteps = inMaxSteps		
     End Property
  
-    'Проверка корректности заданного цвета: цвет должен содержать 6 символов 0-9 или A-F.
-    'Возвращается True (цвет корректен) или False.
+    'РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё Р·Р°РґР°РЅРЅРѕРіРѕ С†РІРµС‚Р°: С†РІРµС‚ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ 6 СЃРёРјРІРѕР»РѕРІ 0-9 РёР»Рё A-F.
+    'Р’РѕР·РІСЂР°С‰Р°РµС‚СЃСЏ True (С†РІРµС‚ РєРѕСЂСЂРµРєС‚РµРЅ) РёР»Рё False.
     Private Function fTestColor(inCol)
         Dim tIndex, tChar
         On Error Resume Next
@@ -1956,10 +1998,10 @@ End Class
 
 'MAIN \\ STEP 0 \\ Scan for files
 Private Sub fFileScanner(inFolder, inTraderCode)
-	Dim tSubFolder, tFile, tIndex, tMaxIndex
+	Dim tSubFolder, tFile, tIndex, tMaxIndex, Attrs
 	
 	' 01 // Prepare
-	fLogLine "SCAN", "Путь поиска > " & inFolder.Path
+	fLogLine "SCAN", "РџСѓС‚СЊ РїРѕРёСЃРєР° > " & inFolder.Path
 	gProgressBar.Move -1, -1, 500, -1
 	
 	' 02 // Report scan
@@ -1968,19 +2010,20 @@ Private Sub fFileScanner(inFolder, inTraderCode)
 	gProgressBar.Title = "ReportConverter Processing"
 	gProgressBar.Units = tMaxIndex
 	gProgressBar.Show
-	gProgressBar.Caption = "Выполнение: Ожидайте..."	
+	gProgressBar.Caption = "Р’С‹РїРѕР»РЅРµРЅРёРµ: РћР¶РёРґР°Р№С‚Рµ..."	
 	
 	For Each tFile in inFolder.Files
 		tIndex = tIndex + 1
-		gProgressBar.Caption = "Чтение файла: " & tIndex & " из " & tMaxIndex & vbCrLf & " [" & tFile.Name & "]"
-		gProgressBar.ClassInfo = "Отчет: не известно"	
+		gProgressBar.Caption = "Р§С‚РµРЅРёРµ С„Р°Р№Р»Р°: " & tIndex & " РёР· " & tMaxIndex & vbCrLf & " [" & tFile.Name & "]"
+		gProgressBar.ClassInfo = "РћС‚С‡РµС‚: РЅРµ РёР·РІРµСЃС‚РЅРѕ"	
 		gProgressBar.Advance
 		fFileRecognize tFile, inTraderCode ' RECOGNIZER
 	Next
 	
 	' 03 // SubFolder scan	
 	For Each tSubFolder in inFolder.SubFolders
-		fFileScanner(tSubFolder)
+		Attrs = tSubFolder.Attributes 'Hidden excluing
+		If Not Attrs And 2 Then: fFileScanner tSubFolder, inTraderCode		
 	Next
 End Sub
 
