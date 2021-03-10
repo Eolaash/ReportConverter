@@ -143,7 +143,7 @@
 								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">реестр авансовых</validatefield>
 								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">аэс/гэс</validatefield>
 								<validatefield row="2" col="1" static="1" casesense="0" comparemethod="consists">(покупатели)</validatefield>
-								<validatefield row="3" col="1" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_CYR_N## ##CMD$PERIODDATE_YEAR_N_4##</validatefield>							
+								<validatefield row="3" col="1" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_CYR_N## ##CMD$PERIODDATE_YEAR_N_4##</validatefield>
 								<validatefield row="4" col="2" static="1" casesense="0" comparemethod="consists">номер договора</validatefield>
 								<validatefield row="4" col="6" static="1" casesense="0" comparemethod="consists">код гтп потребления</validatefield>
 								<validatefield row="4" col="9" static="1" casesense="0" comparemethod="consists">код гтп генерации</validatefield>
@@ -206,6 +206,45 @@
 					</file>
 				</files>
 				<readingplanes>
+					<readingplan id="1" readmethod="EXCEL" comment="">
+						<sheet id="1" name="Финансовый отчет">
+							<validatefields>
+								<validatefield row="7" col="8" static="0" casesense="0" comparemethod="consists">##CMD$TRADERCODE##</validatefield>								
+								<validatefield row="9" col="1" static="1" casesense="0" comparemethod="consists">о результатах расчетов объемов и стоимости</validatefield>
+								<validatefield row="10" col="1" static="0" casesense="0" comparemethod="consists">##CMD$PERIODDATE_MONTH_CYR_N## ##CMD$PERIODDATE_YEAR_N_4##</validatefield>
+								<validatefield row="13" col="1" static="1" casesense="0" comparemethod="consists">Объем производства</validatefield>
+							</validatefields>
+							<reading method="COMPLEX" submethod="FINREPORT" datastart="13" emptyitemlimit="0" blockseparatorlimit="2" headerlocker="п/п">
+								<datablock id="1" name="Объем производства" sumrow="1" separatorrow="2" indexcol="1" comment="Собственная генерация для опта">
+									<datafield id="gtp_code" datatype="GTP_CODE" col="2" headerconsists="ГТП"/>
+									<datafield id="generate_plan_value" datatype="VALUE" col="3" headerconsists="Полный плановый объем"/>
+									<datafield id="generate_diff_value" datatype="VALUE" col="4" headerconsists="Объем отклонений по"/>
+									<datafield id="generate_fact_value" datatype="VALUE" col="5" headerconsists="Фактический объем"/>
+								</datablock>
+								<datablock id="2" name="Объем потребления" sumrow="1" separatorrow="2" indexcol="1" comment="Потребление с опта">
+									<datafield id="gtp_code" datatype="GTP_CODE" col="2" headerconsists="ГТП"/>
+									<datafield id="consume_plan_value" datatype="VALUE" col="3" headerconsists="Полный плановый объем"/>
+									<datafield id="consume_seflgenerate_value" datatype="VALUE" col="4" headerconsists="выработкой блок-станций"/>
+									<datafield id="consume_correctedplan_value" datatype="VALUE" col="5" headerconsists="Плановый объем"/>
+									<datafield id="consume_loadlosses_value" datatype="VALUE" col="6" headerconsists="плановых нагрузочных потерь"/>
+									<datafield id="consume_diff_value" datatype="VALUE" col="7" headerconsists="Объем отклонений"/>
+									<datafield id="consume_fact_value" datatype="VALUE" col="8" headerconsists="Фактический объем"/>
+								</datablock>						
+							</reading>
+							<fielddescriptions>
+								<fielddescription id="gtp_code">Код ГТП</fielddescription>
+								<fielddescription id="generate_plan_value">Полный плановый объем производства</fielddescription>
+								<fielddescription id="generate_diff_value">Объем отклонений по производству</fielddescription>
+								<fielddescription id="generate_fact_value">Фактический объем производства</fielddescription>								
+								<fielddescription id="consume_plan_value">Полный плановый объем потребления</fielddescription>
+								<fielddescription id="consume_seflgenerate_value">Объем потребления, покрытый выработкой блок-станций</fielddescription>
+								<fielddescription id="consume_correctedplan_value">Плановый объем потребления</fielddescription>
+								<fielddescription id="consume_loadlosses_value">Объем плановых нагрузочных потерь, отнесенных к энергорайону участника</fielddescription>
+								<fielddescription id="consume_diff_value">Объем отклонений по потреблению</fielddescription>
+								<fielddescription id="consume_fact_value">Фактический объем потребления</fielddescription>								
+							</fielddescriptions>
+						</sheet>
+					</readingplan>
 				</readingplanes>
 			</version>
 		</report>
@@ -222,6 +261,7 @@
 		<datatype id="DATESTAMP" data="DATETIME" description="Дата"/>
 		<datatype id="POWER_M" data="NUMERIC" sizemulitiplier="1000" unit="МВт" description="Мощность"/>
 		<datatype id="POWER" data="NUMERIC" sizemulitiplier="1" unit="кВт" description="Мощность"/>
+		<datatype id="VALUE" data="NUMERIC" sizemulitiplier="1" unit="кВт*ч" description="Объем"/>
 		<datatype id="MONEY_RUB" data="NUMERIC" sizemulitiplier="1" unit="руб" description="Деньги"/>
 	</datatypes>
 </message>

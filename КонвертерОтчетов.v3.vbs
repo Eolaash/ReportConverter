@@ -411,24 +411,6 @@ Private Function fGetTimeStamp()
 	fGetTimeStamp = tResult
 End Function
 
-'fQuitScript - soft quiting this script
-Private Sub fQuitScript()
-	'close log session
-	fLogClose
-	fExcelControl gExcel, 1, 1, 0, 1
-	'destroy objects	
-	Set gFSO = Nothing	
-	Set gRExp = Nothing
-	Set gExcel = Nothing
-	Set gWSO = Nothing
-	Set gRDataXML = Nothing
-	Set gRSetXML = Nothing
-	Set gProgressBar = Nothing
-	'quit
-	WScript.Echo "Done"
-	WScript.Quit
-End Sub
-
 'fSaveXMLRDataChanges - save data to XML RSet (+TimeStamp update; +Rebuilding)
 Private Sub fSaveXMLRDataChanges(inFilePath, inXMLObject)
 	Dim tNode, tValue, tTextFile, tXMLText, tXMLBufText
@@ -1080,10 +1062,17 @@ Private Sub fCommandConverter(inString, inParamString)
 				tCommand = Right(tStringElement, Len(tStringElement) - 4)
 				tResultValue = tCommand
 				
-				tCommandElements = Split(tCommand, "_")								
+				tCommandElements = Split(tCommand, "_")
+				tResultValue = "#ERROR#"
+
 				Select Case tCommandElements(0)
-					Case "PERIODDATE":
-						tResultValue = "#ERROR#"
+					
+					Case "TRADERCODE":
+						If UBound(tCommandElements) = 0 Then							
+							tResultValue = fGetParamFromString(inParamString, "TraderCode")							
+						End If
+					
+					Case "PERIODDATE":						
 						If UBound(tCommandElements) = 3 Then
 							tValue = fGetParamFromString(inParamString, "PeriodDate")
 							If tCommandElements(1) = "YEAR" Then
@@ -1099,24 +1088,22 @@ Private Sub fCommandConverter(inString, inParamString)
 								tValue = Day(tValue)
 								If tCommandElements(2) = "N" Then: tResultValue = fNZeroAdd(tValue, tCommandElements(3))
 							Else
-								WScript.Echo "Unknown command <" & tCommand & ">!"
-								tResultValue = "#ERROR#"
+								WScript.Echo "Unknown subcommand <" & tCommand & ">!"								
 							End if
 						End If
-					Case "ZONE":
-						tResultValue = "#ERROR#"
+
+					Case "ZONE":						
 						If UBound(tCommandElements) = 1 Then
 							tValue = fGetParamFromString(inParamString, "ZoneID")
 							If tCommandElements(1) = "N" Then
 								tResultValue = tValue
 							Else
-								WScript.Echo "Unknown command <" & tCommand & ">!"
-								tResultValue = "#ERROR#"
+								WScript.Echo "Unknown subcommand <" & tCommand & ">!"								
 							End if
 						End If
+
 					Case Else:
-						WScript.Echo "Unknown command <" & tCommand & ">!"
-						tResultValue = "#ERROR#"
+						WScript.Echo "Unknown command <" & tCommand & ">!"						
 				End Select
 				
 				inString = inString & tResultValue
@@ -1138,6 +1125,7 @@ Private Sub fFileDataCheck_EXCEL(inRSetNode, inFile, inParamString, outVersionLo
 	' 01 // Prepare
 	outVersionLock = False
 	tLogTag = "fFileDataCheck_EXCEL"
+	'WScript.Echo inParamString
 	
 	' 02 // Node check
 	If inRSetNode Is Nothing Then: Exit Sub
@@ -1201,19 +1189,19 @@ Private Sub fFileDataCheck_EXCEL(inRSetNode, inFile, inParamString, outVersionLo
 					Select Case tCompareMethod
 						Case "equal": 
 							If tCellValue <> tCompareString Then
-								'WScript.Echo "Compare failed at <" & tCompareString & "> CELL=" & tCellValue
+								WScript.Echo "Compare failed at <" & tCompareString & "> CELL=" & tCellValue
 								tCompareResult = False
 								Exit For
 							End If
 						Case "equal_trimmed": 
 							If Trim(tCellValue) <> tCompareString Then
-								'WScript.Echo "Compare failed at <" & tCompareString & "> CELL=" & tCellValue
+								WScript.Echo "Compare failed at <" & tCompareString & "> CELL=" & tCellValue
 								tCompareResult = False
 								Exit For
 							End If
 						Case "consists": 							
 							If InStr(LCase(tCellValue), LCase(tCompareString)) < 1 Then
-								'WScript.Echo "Compare failed at <" & tCompareString & ">"
+								WScript.Echo "Compare failed at <" & tCompareString & "> with cellvalue <" & tCellValue & ">"
 								tCompareResult = False
 								Exit For
 							End If
@@ -1790,14 +1778,12 @@ Private Sub fFileRecognize(inFile, inTraderCode)
 	For Each tNode In tNodes
 
 		' Преробразуем общие части маски под необходимые
-		gRExp.Pattern = fReprocessMask(tNode.Text, inTraderCode)
-		'fLogLine "RECOGNIZER", "gRExp.Pattern > " & gRExp.Pattern
+		gRExp.Pattern = fReprocessMask(tNode.Text, inTraderCode)		
 		
 		' A1 // Маска совпала?
 		If gRExp.Test(tFileName) Then
 			tReportLocked = True
-			Set tRSetNode = tNode.SelectSingleNode("ancestor::file") 'перейдем к прародителю <file> ноды <mask>
-			'fLogLine "RECOGNIZER", "LOCK > " & gRExp.Pattern
+			Set tRSetNode = tNode.SelectSingleNode("ancestor::file") 'перейдем к прародителю <file> ноды <mask>			
 		
 			' A2 // Проверка файла на соответствие по внешним признакам (имя и расширение) tParamString - своего рода контекст сопровождения
 			If fValidateReportFile(inFile, tFileName, tFileExtension, tRSetNode, tParamString) Then
@@ -2022,11 +2008,13 @@ Private Sub fFileScanner(inFolder, inTraderCode)
 	
 	' 03 // SubFolder scan	
 	For Each tSubFolder in inFolder.SubFolders
-		Attrs = tSubFolder.Attributes 'Hidden excluing
+		'Hidden folders excluding
+		Attrs = tSubFolder.Attributes
 		If Not Attrs And 2 Then: fFileScanner tSubFolder, inTraderCode		
 	Next
 End Sub
 
+'fInit - init object and ect as global variables
 Private Sub fInit()
 	Set gFSO = CreateObject("Scripting.FileSystemObject")
 	Set gWSO = CreateObject("WScript.Shell")
@@ -2055,6 +2043,23 @@ Private Sub fInit()
 	Set gProgressBar = new clsExplorerProgressBar	
 End Sub
 
+'fQuitScript - soft quiting this script
+Private Sub fQuitScript()
+	'close log session
+	fLogClose
+	fExcelControl gExcel, 1, 1, 0, 1
+	'destroy objects	
+	Set gFSO = Nothing	
+	Set gRExp = Nothing
+	Set gExcel = Nothing
+	Set gWSO = Nothing
+	Set gRDataXML = Nothing
+	Set gRSetXML = Nothing
+	Set gProgressBar = Nothing
+	'quit
+	WScript.Echo "Done"
+	WScript.Quit
+End Sub
 '======= // MAIN
 
 fInit
